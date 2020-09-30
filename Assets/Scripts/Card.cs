@@ -1,10 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace Assets.Scripts
+public class Card
 {
-    public class Card
-    {
-        Symbol symbol;
-    }
+    Symbol symbol;
 }

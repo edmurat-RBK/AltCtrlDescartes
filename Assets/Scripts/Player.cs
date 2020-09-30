@@ -1,19 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace Assets.Scripts
+public class Player
 {
-    public class Player
-    {
-        public Side side;
-        public Table table;
-        public ObjectiveChain objectiveChain;
+    public Side side;
+    public Table table;
+    public ObjectiveChain objectiveChain;
 
-        public Player(Side playerSide)
-        {
-            side = playerSide;
-            table = new Table();
-            objectiveChain = new ObjectiveChain(2);
-        }
+    public Player(Side playerSide)
+    {
+        side = playerSide;
+        table = new Table();
+        objectiveChain = new ObjectiveChain(2);
     }
 }

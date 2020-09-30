@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6645111745257488904}
   - component: {fileID: 1220961716426714652}
+  - component: {fileID: 8777499629378792121}
   m_Layer: 0
   m_Name: Card Slot
   m_TagString: Untagged
@@ -82,3 +83,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &8777499629378792121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3809224159215617899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d03a910dcb6aa145b7c6527dd3473cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  card: 0
+  position: 0
+  playerSide: 0
+  triangleCard: {fileID: 0}
+  squareCard: {fileID: 0}
+  circleCard: {fileID: 0}
+  emptyCard: {fileID: 0}

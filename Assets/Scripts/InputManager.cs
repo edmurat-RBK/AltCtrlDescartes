@@ -2,53 +2,100 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets.Scripts
+public enum PlayerNum
 {
-    public enum PlayerNum
+    PLAYER_1 = 1,
+    PLAYER_2 = 2
+}
+
+public enum SlotNum
+{
+    LEFT = 1,
+    MIDDLE = 2,
+    RIGHT = 3
+}
+
+public enum CardNum
+{
+    TRIANGLE = 1,
+    SQUARE = 2,
+    CIRCLE = 3
+}
+
+public class InputManager : MonoBehaviour
+{
+
+    public bool playerIsSelect = false;
+    public bool slotIsSelect = false;
+    public bool cardIsSelect = false;
+
+    public PlayerNum playerSelect;
+    public SlotNum slotSelect;
+    public CardNum cardSelect;
+
+    void Start()
     {
-        PLAYER_1 = 1,
-        PLAYER_2 = 2
+        Debug.Log("Start InputManager");
     }
 
-    public enum SlotNum
+    void Update()
     {
-        LEFT = 1,
-        MIDDLE = 2,
-        RIGHT = 3
-    }
-
-    public enum CardNum
-    {
-        TRIANGLE = 1,
-        SQUARE = 2,
-        CIRCLE = 3
-    }
-
-    public class InputManager : MonoBehaviour
-    {
-        public bool playerIsSelect = false;
-        public bool slotIsSelect = false;
-        public bool cardIsSelect = false;
-
-        public PlayerNum playerSelect;
-        public SlotNum slotSelect;
-        public CardNum cardSelect;
-
-        void Start()
+        // DEBUG Player Selection
+        if (Input.GetKey(KeyCode.A))
         {
-
+            playerIsSelect = true;
+            playerSelect = PlayerNum.PLAYER_1;
+        }
+        else if (Input.GetKey(KeyCode.E))
+        {
+            playerIsSelect = true;
+            playerSelect = PlayerNum.PLAYER_2;
+        }
+        else
+        {
+            playerIsSelect = false;
         }
 
-        void Update()
+        // DEBUG Slot Selection
+        if (Input.GetKey(KeyCode.Q))
         {
-            if (Input.GetKey(KeyCode.A))
-            {
+            slotIsSelect = true;
+            slotSelect = SlotNum.LEFT;
+        }
+        else if (Input.GetKey(KeyCode.S))
+        {
+            slotIsSelect = true;
+            slotSelect = SlotNum.MIDDLE;
+        }
+        else if (Input.GetKey(KeyCode.D))
+        {
+            slotIsSelect = true;
+            slotSelect = SlotNum.RIGHT;
+        }
+        else
+        {
+            slotIsSelect = false;
+        }
 
-            }
-            else if (Input.GetKey(KeyCode.E))
-            {
-
-            }
+        // DEBUG Card Selection
+        if (Input.GetKey(KeyCode.W))
+        {
+            cardIsSelect = true;
+            cardSelect = CardNum.TRIANGLE;
+        }
+        else if (Input.GetKey(KeyCode.X))
+        {
+            cardIsSelect = true;
+            cardSelect = CardNum.SQUARE;
+        }
+        else if (Input.GetKey(KeyCode.C))
+        {
+            cardIsSelect = true;
+            cardSelect = CardNum.CIRCLE;
+        }
+        else
+        {
+            cardIsSelect = false;
         }
     }
 }
