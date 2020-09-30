@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class CoordinateValidation : MonoBehaviour
 {
-    // Start is called before the first frame update
+    private float orderPlayer1;
+    private float orderPlayer2;
+    public GameObject SequenceActuellePlayer1;
+    public GameObject SequenceActuellePlayer2;
     void Start()
     {
-        
+        orderPlayer1 = 1;
+        orderPlayer2 = 1;
     }
 
     // Update is called once per frame
