@@ -19,13 +19,15 @@ public class SyncManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (/*both slots are good */)
+        if (Input.GetKeyDown(KeyCode.Z) && (currentScore <=100))/*both slots are good */
         {
             IncreaseScore(20);
+            Debug.Log("Z+");
         }
-        else if (/*slots are not good*/)
+        else if (Input.GetKeyDown(KeyCode.A) && (currentScore >= 0))/*slots are not good*/
         {
             DecreaseScore(20);
+            Debug.Log("A-");
         }
     }
     void IncreaseScore(int score)

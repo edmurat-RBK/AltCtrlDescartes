@@ -11,8 +11,8 @@ public class SyncScore : MonoBehaviour
 
     public void SetMaxSync(int score)
     {
-        slider.maxValue = 100;
-        slider.value = score;
+        slider.maxValue = score;
+        slider.value = rawScore;
     }
     public void SetSynch(int score)
     {
