@@ -6,7 +6,7 @@ using System.Collections.Generic;
 public class SyncScore : MonoBehaviour
 {
     public Slider slider;
-    public int rawScore = 50;
+    public int rawScore;
     public int streak = 0;
 
     public void SetMaxSync(int score)
