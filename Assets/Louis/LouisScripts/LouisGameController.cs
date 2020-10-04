@@ -29,6 +29,7 @@ public class LouisGameController : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.Z) && !player1Winned)
         {
+//            if(player1CardList.cards[player1ProgressionNumber].isValidated = input)
             player1CardList.cards[player1ProgressionNumber].isValidated = true;
             player1ProgressionNumber++;
             if (player1ProgressionNumber < player1CardList.cards.Length)
