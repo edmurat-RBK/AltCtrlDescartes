@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 613747261234828925}
-  - component: {fileID: 1758751711919132862}
+  - component: {fileID: 8892411965680397641}
   m_Layer: 0
   m_Name: PrefabSymbolVert
   m_TagString: Untagged
@@ -31,7 +31,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1758751711919132862
+--- !u!114 &8892411965680397641
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -40,9 +40,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1903808957240946075}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fca1e5cff8157f748a9518200fbe5e2a, type: 3}
+  m_Script: {fileID: 11500000, guid: 13d2ff6ccf52a9f479f4427b5c9d2368, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  order: 0
-  symbol: 2
-  validated: 0
+  symbol: {r: 0, g: 0, b: 0, a: 0}
+  isHidden: 1
+  isValidated: 0

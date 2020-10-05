@@ -40,9 +40,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 7256341308980081599}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fca1e5cff8157f748a9518200fbe5e2a, type: 3}
+  m_Script: {fileID: 11500000, guid: 13d2ff6ccf52a9f479f4427b5c9d2368, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  order: 0
-  symbol: 1
-  validated: 0
+  symbol: {r: 0, g: 0, b: 0, a: 0}
+  isHidden: 1
+  isValidated: 0
