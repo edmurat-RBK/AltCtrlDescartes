@@ -538,7 +538,7 @@ namespace Uduino
                 tex = (Texture)EditorGUIUtility.Load("Assets/Uduino/Editor/Resources/uduino-logo.png");
                 tex2 = (Texture)EditorGUIUtility.Load("Assets/Uduino/Editor/Resources/arduino-bg.png");
 
-            } catch(Exception e)
+            } catch
             {
                 Log.Debug("Impossible to load the Logo");
             }
