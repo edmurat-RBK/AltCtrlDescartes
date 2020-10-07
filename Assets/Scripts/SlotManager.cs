@@ -12,8 +12,10 @@ public class SlotManager : MonoBehaviour
     public Sprite squareCard;
     public Sprite circleCard;
     public Sprite emptyCard;
+    public Sprite deadSlot;
 
     private InputManager input;
+    private bool isDead = false;
 
     void Start()
     {

@@ -22,12 +22,10 @@ public class SyncManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Z) && (currentScore <=100))/*both slots are good */
         {
             IncreaseScore(20);
-            Debug.Log("Z+");
         }
         else if (Input.GetKeyDown(KeyCode.A) && (currentScore >= 0))/*slots are not good*/
         {
             DecreaseScore(20);
-            Debug.Log("A-");
         }
     }
     void IncreaseScore(int score)
