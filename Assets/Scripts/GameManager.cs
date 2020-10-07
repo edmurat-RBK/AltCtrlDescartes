@@ -40,6 +40,8 @@ public class GameManager : MonoBehaviour
     private static GameManager _instance = null;
     #endregion
 
+
+
     // Start is called before the first frame update
     void Start()
     {

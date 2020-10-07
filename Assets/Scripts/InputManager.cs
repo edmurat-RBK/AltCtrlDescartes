@@ -53,6 +53,8 @@ public class InputManager : MonoBehaviour
     public Dictionary<string, Player> playerMapping;
     public Dictionary<string, Card> cardMapping;
 
+    
+
     private void Start()
     {
         playerMapping = new Dictionary<string, Player>();
@@ -67,12 +69,12 @@ public class InputManager : MonoBehaviour
 
     public void Trigger(string uid)
     {
-        //string strPlayer;
-        //string strCard;
+        string strPlayer;
+        string strCard;
 
         Player outPlayer;
         playerMapping.TryGetValue(uid, out outPlayer);
-        /*
+        
         switch (outPlayer) 
         {
             case Player.LEFT:
@@ -87,11 +89,11 @@ public class InputManager : MonoBehaviour
                 strPlayer = "UNKNOWN";
                 break;
         }
-        */
+        
 
         Card outCard;
         cardMapping.TryGetValue(uid, out outCard);
-        /*
+        
         switch (outCard)
         {
             case Card.TRIANGLE:
@@ -110,9 +112,9 @@ public class InputManager : MonoBehaviour
                 strCard = "UNKNOWN";
                 break;
         }
-        */
+        
 
-        //Debug.Log("The " + strPlayer + " player has played " + strCard + " card");
+        Debug.Log("The " + strPlayer + " player has played " + strCard + " card");
 
 
     }
