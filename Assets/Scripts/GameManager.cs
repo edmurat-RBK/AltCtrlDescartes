@@ -44,30 +44,39 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        state = GameState.INIT;
+        state = GameState.WAIT_BOTH;
     }
 
     private void Update()
     {
         switch(state)
         {
-            case GameState.INIT:
-
+            case GameState.WAIT_BOTH:
+                if(SlotManager.Instance.cardDown[(int)PlayerName.CASTOR])
+                {
+                    state = GameState.WAIT_POLLUX;
+                }
+                else if (SlotManager.Instance.cardDown[(int)PlayerName.POLLUX])
+                {
+                    state = GameState.WAIT_CASTOR;
+                }
                 break;
 
-            case GameState.WAITING_BOTH:
-                
+            case GameState.WAIT_CASTOR:
+                if (SlotManager.Instance.cardDown[(int)PlayerName.CASTOR])
+                {
+                    state = GameState.FEEDBACK;
+                }
                 break;
 
-            case GameState.WAITING_P1:
-
+            case GameState.WAIT_POLLUX:
+                if (SlotManager.Instance.cardDown[(int)PlayerName.POLLUX])
+                {
+                    state = GameState.FEEDBACK;
+                }
                 break;
 
-            case GameState.WAITING_P2:
-
-                break;
-
-            case GameState.COMPARING:
+            case GameState.FEEDBACK:
 
                 break;
         }

@@ -4,34 +4,28 @@ using UnityEngine;
 
 public class SlotAgent
 {
-    public SlotState state;
+    public SlotState state = SlotState.EMPTY;
     public bool locked = false;
 
-    public SlotAgent()
+    public void Update(string uid)
     {
-        state = SlotState.EMPTY;
-    }
-
-    public void EmptySlot()
-    {
-        if(state != SlotState.EMPTY)
+        NFCManager.EncyclopediaEntry ee;
+        if(NFCManager.Instance.encyclopedia.TryGetValue(uid, out ee))
         {
-            state = SlotState.EMPTY;
-            Lock();
-        }
-        else
-        {
-            Unlock();
-        }
-    }
+            switch(ee.card)
+            {
+                case CardSymbol.TRIANGLE:
+                    state = SlotState.TRIANGLE;
+                    break;
 
-    public void Unlock()
-    {
-        locked = false;
-    }
+                case CardSymbol.SQUARE:
+                    state = SlotState.SQUARE;
+                    break;
 
-    public void Lock()
-    {
-        locked = true;
+                case CardSymbol.CIRCLE:
+                    state = SlotState.CIRCLE;
+                    break;
+            }
+        }
     }
 }

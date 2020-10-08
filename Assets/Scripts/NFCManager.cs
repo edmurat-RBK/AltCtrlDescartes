@@ -1,9 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Uduino;
-using System.ComponentModel;
-using System.Linq;
 
 public class NFCManager : MonoBehaviour
 {
@@ -42,28 +40,23 @@ public class NFCManager : MonoBehaviour
     private static NFCManager _instance = null;
     #endregion
     
-    [ReadOnly(true)]
-    public string lastUID;
-
-    public string[] whitelistUID;
-
-    public void GetArduinoSerial(string data, UduinoDevice board)
+    [Serializable]
+    public class EncyclopediaEntry
     {
-        string device;
-        string reader;
-        string uid;
+        public string uid;
+        public PlayerName player;
+        public CardSymbol card;
+    }
+    public EncyclopediaEntry[] modifiableEncyclopedia;
 
-        device = data.Split(':')[0];
-        reader = data.Split(':')[1];
-        uid = data.Split(':')[2];
+    public Dictionary<string, EncyclopediaEntry> encyclopedia;
 
-        if(whitelistUID.Contains(uid))
+    private void Start()
+    {
+        encyclopedia = new Dictionary<string, EncyclopediaEntry>();
+        foreach(EncyclopediaEntry ee in modifiableEncyclopedia)
         {
-            Debug.Log("\nDevice : " + device + "\nReader : " + reader + "\nUID : " + uid);
-        }
-        else
-        {
-            Debug.LogWarning(data + " is not whitelisted");
+            encyclopedia.Add(ee.uid, ee);
         }
     }
 }

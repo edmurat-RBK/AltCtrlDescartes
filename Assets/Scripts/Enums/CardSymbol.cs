@@ -1,6 +1,5 @@
-﻿public enum SlotState
+﻿public enum CardSymbol
 {
-    EMPTY,
     TRIANGLE,
     SQUARE,
     CIRCLE

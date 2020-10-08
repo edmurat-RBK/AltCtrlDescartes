@@ -1,22 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Uduino;
 using UnityEngine;
 
 public class SlotManager : MonoBehaviour
 {
     #region Singleton
-    public static GameManager Instance
+    public static SlotManager Instance
     {
         get
         {
             if (_instance != null)
                 return _instance;
 
-            GameManager[] managers = FindObjectsOfType(typeof(GameManager)) as GameManager[];
+            SlotManager[] managers = FindObjectsOfType(typeof(SlotManager)) as SlotManager[];
             if (managers.Length == 0)
             {
-                Debug.LogWarning("GameManager not present on the scene. Creating a new one.");
-                GameManager manager = new GameObject("Game Manager").AddComponent<GameManager>();
+                Debug.LogWarning("SlotManager not present on the scene. Creating a new one.");
+                SlotManager manager = new GameObject("Slot Manager").AddComponent<SlotManager>();
                 _instance = manager;
                 return _instance;
             }
@@ -31,26 +32,63 @@ public class SlotManager : MonoBehaviour
                 _instance = value;
             else
             {
-                Debug.LogError("You can only use one GameManager. Destroying the new one attached to the GameObject " + value.gameObject.name);
+                Debug.LogError("You can only use one SlotManager. Destroying the new one attached to the GameObject " + value.gameObject.name);
                 Destroy(value);
             }
         }
     }
-    private static GameManager _instance = null;
+    private static SlotManager _instance = null;
     #endregion
 
     public SlotAgent[] slotAgents;
+    public bool[] cardDown;
 
-    public bool castorHasPlayed = false;
-    public bool polluxHasPlayed = false;
-
-    private void Start()
+    private void Awake()
     {
         slotAgents = new SlotAgent[6];
+        cardDown = new bool[2] { false, false };
+    }
 
-        for (int i = 0; i<6; i++)
+    public void GetData(string data, UduinoDevice board)
+    {
+        string[] dataSplit = data.Split(':');
+        string device = dataSplit[0];
+        string reader = dataSplit[1]; 
+        string uid = dataSplit[2]; 
+
+        if(device.Equals("CASTOR") && !cardDown[(int)PlayerName.CASTOR])
         {
-            slotAgents[i] = new SlotAgent();
+            if(reader.Equals("ALPHA"))
+            {
+                slotAgents[(int)SlotName.ALPHA].Update(uid);
+            }
+            else if(reader.Equals("BETA"))
+            {
+                slotAgents[(int)SlotName.BETA].Update(uid);
+            }
+            else if(reader.Equals("GAMMA"))
+            {
+                slotAgents[(int)SlotName.GAMMA].Update(uid);
+            }
+
+            cardDown[(int)PlayerName.CASTOR] = false;
+        }
+        else if(device.Equals("POLLUX") && !cardDown[(int)PlayerName.POLLUX])
+        {
+            if (reader.Equals("ALPHA"))
+            {
+                slotAgents[(int)SlotName.DELTA].Update(uid);
+            }
+            else if (reader.Equals("BETA"))
+            {
+                slotAgents[(int)SlotName.EPSILON].Update(uid);
+            }
+            else if (reader.Equals("GAMMA"))
+            {
+                slotAgents[(int)SlotName.DZETA].Update(uid);
+            }
+
+            cardDown[(int)PlayerName.POLLUX] = false;
         }
     }
 }
