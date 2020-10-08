@@ -16,12 +16,12 @@ public class LouisGameController : MonoBehaviour
         player2CardList.cards[player2ProgressionNumber].isHidden = false;
     }
 
-    void InitializedCardList(CardList cardList)
+    void InitializedCardList(CardList CardList)
     {
-        foreach (LouisCard card in cardList.cards)
+        foreach (LouisCard LouisCard in CardList.cards)
         {
-            card.isValidated = false;
-            card.isHidden = true;
+            LouisCard.isValidated = false;
+            LouisCard.isHidden = true;
         }
     }
 
