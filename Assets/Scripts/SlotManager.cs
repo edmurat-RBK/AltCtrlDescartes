@@ -1,9 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using Uduino;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class SlotManager : MonoBehaviour
 {
     #region Singleton
     public static GameManager Instance
@@ -40,36 +39,18 @@ public class GameManager : MonoBehaviour
     private static GameManager _instance = null;
     #endregion
 
-    public GameState state;
+    public SlotAgent[] slotAgents;
+
+    public bool castorHasPlayed = false;
+    public bool polluxHasPlayed = false;
 
     private void Start()
     {
-        state = GameState.INIT;
-    }
+        slotAgents = new SlotAgent[6];
 
-    private void Update()
-    {
-        switch(state)
+        for (int i = 0; i<6; i++)
         {
-            case GameState.INIT:
-
-                break;
-
-            case GameState.WAITING_BOTH:
-                
-                break;
-
-            case GameState.WAITING_P1:
-
-                break;
-
-            case GameState.WAITING_P2:
-
-                break;
-
-            case GameState.COMPARING:
-
-                break;
+            slotAgents[i] = new SlotAgent();
         }
     }
 }

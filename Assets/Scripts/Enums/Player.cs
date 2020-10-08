@@ -5,6 +5,6 @@ using UnityEngine;
 public enum Player
 {
     NONE,
-    LEFT,
-    RIGHT
+    CASTOR,
+    POLLUX
 }

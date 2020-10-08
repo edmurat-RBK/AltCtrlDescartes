@@ -53,7 +53,7 @@ public class InputManager : MonoBehaviour
     public Dictionary<string, Player> playerMapping;
     public Dictionary<string, Card> cardMapping;
 
-    
+
 
     private void Start()
     {
@@ -67,55 +67,35 @@ public class InputManager : MonoBehaviour
         }
     }
 
-    public void Trigger(string uid)
+    public static SlotState GetReader(NFCReader reader)
     {
-        string strPlayer;
-        string strCard;
-
-        Player outPlayer;
-        playerMapping.TryGetValue(uid, out outPlayer);
-        
-        switch (outPlayer) 
+        SlotState output = SlotState.EMPTY;
+        switch(reader)
         {
-            case Player.LEFT:
-                strPlayer = "left";
+            case NFCReader.ALPHA:
+
                 break;
 
-            case Player.RIGHT:
-                strPlayer = "right";
+            case NFCReader.BETA:
+
                 break;
 
-            default:
-                strPlayer = "UNKNOWN";
+            case NFCReader.GAMMA:
+
+                break;
+
+            case NFCReader.DELTA:
+
+                break;
+
+            case NFCReader.EPSILON:
+
+                break;
+
+            case NFCReader.DZETA:
+
                 break;
         }
-        
-
-        Card outCard;
-        cardMapping.TryGetValue(uid, out outCard);
-        
-        switch (outCard)
-        {
-            case Card.TRIANGLE:
-                strCard = "triangle";
-                break;
-
-            case Card.SQUARE:
-                strCard = "square";
-                break;
-
-            case Card.CIRCLE:
-                strCard = "circle";
-                break;
-
-            default:
-                strCard = "UNKNOWN";
-                break;
-        }
-        
-
-        Debug.Log("The " + strPlayer + " player has played " + strCard + " card");
-
-
+        return output;
     }
 }

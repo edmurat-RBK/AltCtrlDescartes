@@ -5,7 +5,6 @@ using UnityEngine;
 public enum SlotState
 { 
     EMPTY,
-    LOCKED,
     TRIANGLE,
     SQUARE,
     CIRCLE

@@ -49,11 +49,17 @@ public class NFCManager : MonoBehaviour
 
     public void GetArduinoSerial(string data, UduinoDevice board)
     {
-        Debug.Log("UID received : " + data);
-        if(whitelistUID.Contains(data))
+        string device;
+        string reader;
+        string uid;
+
+        device = data.Split(':')[0];
+        reader = data.Split(':')[1];
+        uid = data.Split(':')[2];
+
+        if(whitelistUID.Contains(uid))
         {
-            lastUID = data;
-            InputManager.Instance.Trigger(data);
+            Debug.Log("\nDevice : " + device + "\nReader : " + reader + "\nUID : " + uid);
         }
         else
         {

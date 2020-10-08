@@ -8,6 +8,5 @@ public enum GameState
     WAITING_BOTH,
     WAITING_P1,
     WAITING_P2,
-    COMPARING,
-    END
+    COMPARING
 }
