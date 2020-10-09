@@ -46,6 +46,11 @@ public class SlotManager : MonoBehaviour
     private void Awake()
     {
         slotAgents = new SlotAgent[6];
+        for(int i = 0; i<6; i++)
+        {
+            slotAgents[i] = new SlotAgent();
+        }
+
         cardDown = new bool[2] { false, false };
     }
 
@@ -54,41 +59,46 @@ public class SlotManager : MonoBehaviour
         string[] dataSplit = data.Split(':');
         string device = dataSplit[0];
         string reader = dataSplit[1]; 
-        string uid = dataSplit[2]; 
+        string uid = dataSplit[2];
 
-        if(device.Equals("CASTOR") && !cardDown[(int)PlayerName.CASTOR])
+        Debug.Log("Data received from Arduino\n"+data);
+
+        if(GameManager.Instance.state == GameState.WAIT_BOTH || GameManager.Instance.state == GameState.WAIT_CASTOR || GameManager.Instance.state == GameState.WAIT_POLLUX)
         {
-            if(reader.Equals("ALPHA"))
+            if (device.Equals("CASTOR") && !cardDown[(int)PlayerName.CASTOR])
             {
-                slotAgents[(int)SlotName.ALPHA].Update(uid);
-            }
-            else if(reader.Equals("BETA"))
-            {
-                slotAgents[(int)SlotName.BETA].Update(uid);
-            }
-            else if(reader.Equals("GAMMA"))
-            {
-                slotAgents[(int)SlotName.GAMMA].Update(uid);
-            }
+                if (reader.Equals("ALPHA"))
+                {
+                    slotAgents[(int)SlotName.ALPHA].Update(uid);
+                }
+                else if (reader.Equals("BETA"))
+                {
+                    slotAgents[(int)SlotName.BETA].Update(uid);
+                }
+                else if (reader.Equals("GAMMA"))
+                {
+                    slotAgents[(int)SlotName.GAMMA].Update(uid);
+                }
 
-            cardDown[(int)PlayerName.CASTOR] = false;
-        }
-        else if(device.Equals("POLLUX") && !cardDown[(int)PlayerName.POLLUX])
-        {
-            if (reader.Equals("ALPHA"))
-            {
-                slotAgents[(int)SlotName.DELTA].Update(uid);
+                cardDown[(int)PlayerName.CASTOR] = true;
             }
-            else if (reader.Equals("BETA"))
+            else if (device.Equals("POLLUX") && !cardDown[(int)PlayerName.POLLUX])
             {
-                slotAgents[(int)SlotName.EPSILON].Update(uid);
-            }
-            else if (reader.Equals("GAMMA"))
-            {
-                slotAgents[(int)SlotName.DZETA].Update(uid);
-            }
+                if (reader.Equals("ALPHA"))
+                {
+                    slotAgents[(int)SlotName.DELTA].Update(uid);
+                }
+                else if (reader.Equals("BETA"))
+                {
+                    slotAgents[(int)SlotName.EPSILON].Update(uid);
+                }
+                else if (reader.Equals("GAMMA"))
+                {
+                    slotAgents[(int)SlotName.DZETA].Update(uid);
+                }
 
-            cardDown[(int)PlayerName.POLLUX] = false;
+                cardDown[(int)PlayerName.POLLUX] = true;
+            }
         }
     }
 }

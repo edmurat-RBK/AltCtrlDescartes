@@ -55,10 +55,12 @@ public class GameManager : MonoBehaviour
                 if(SlotManager.Instance.cardDown[(int)PlayerName.CASTOR])
                 {
                     state = GameState.WAIT_POLLUX;
+                    Debug.Log("Game state switch to WAIT_POLLUX");
                 }
                 else if (SlotManager.Instance.cardDown[(int)PlayerName.POLLUX])
                 {
                     state = GameState.WAIT_CASTOR;
+                    Debug.Log("Game state switch to WAIT_CASTOR");
                 }
                 break;
 
@@ -66,6 +68,7 @@ public class GameManager : MonoBehaviour
                 if (SlotManager.Instance.cardDown[(int)PlayerName.CASTOR])
                 {
                     state = GameState.FEEDBACK;
+                    Debug.Log("Game state switch to FEEDBACK");
                 }
                 break;
 
@@ -73,11 +76,35 @@ public class GameManager : MonoBehaviour
                 if (SlotManager.Instance.cardDown[(int)PlayerName.POLLUX])
                 {
                     state = GameState.FEEDBACK;
+                    Debug.Log("Game state switch to FEEDBACK");
                 }
                 break;
 
             case GameState.FEEDBACK:
+                state = GameState.RESET;
+                Debug.Log("Game state switch to RESET");
+                break;
 
+            case GameState.RESET:
+                foreach(SlotAgent sa in SlotManager.Instance.slotAgents)
+                {
+                    if(sa.state != SlotState.EMPTY && !sa.locked)
+                    {
+                        sa.locked = true;
+                        sa.state = SlotState.EMPTY;
+                    }
+                    else if(sa.state == SlotState.EMPTY && sa.locked)
+                    {
+                        sa.locked = false;
+                    }
+                }
+
+                //Reset cardDown array
+                SlotManager.Instance.cardDown[0] = false;
+                SlotManager.Instance.cardDown[1] = false;
+
+                state = GameState.WAIT_BOTH;
+                Debug.Log("Game state switch to WAIT_BOTH");
                 break;
         }
     }

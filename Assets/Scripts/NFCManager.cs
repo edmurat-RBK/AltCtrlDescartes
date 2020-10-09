@@ -53,6 +53,7 @@ public class NFCManager : MonoBehaviour
 
     private void Start()
     {
+        Debug.Log("Creating encyclopedia");
         encyclopedia = new Dictionary<string, EncyclopediaEntry>();
         foreach(EncyclopediaEntry ee in modifiableEncyclopedia)
         {

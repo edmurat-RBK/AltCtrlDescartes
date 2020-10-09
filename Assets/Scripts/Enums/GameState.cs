@@ -3,5 +3,6 @@
     WAIT_BOTH,
     WAIT_CASTOR,
     WAIT_POLLUX,
-    FEEDBACK
+    FEEDBACK,
+    RESET
 }
