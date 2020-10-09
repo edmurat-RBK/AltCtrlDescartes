@@ -104,7 +104,7 @@ public class SlotManager : MonoBehaviour
         }
     }
 
-    public bool Success(out CardSymbol symbol)
+    public bool CheckSuccess(out CardSymbol symbol)
     {
         for(var i=0; i<3; i++)
         {

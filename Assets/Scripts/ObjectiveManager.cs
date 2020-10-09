@@ -41,6 +41,46 @@ public class ObjectiveManager : MonoBehaviour
 
     public ObjectiveSet[] objectiveSetList;
 
+    public ObjectiveSet[] objectiveSets;
+    public int[] currentObjective;
+    public bool[] finishObjective;
+
+    private void Start()
+    {
+        objectiveSets = new ObjectiveSet[2];
+        currentObjective = new int[2];
+        finishObjective = new bool[2];
+        for (int i = 0; i < 2; i++)
+        {
+            objectiveSets[i] = pickRandom();
+            currentObjective[i] = 0;
+            finishObjective[i] = false;
+        }
+    }
+
+    public void Success(CardSymbol symbol)
+    {
+        for (int i = 0; i < 2; i++)
+        {
+            if (objectiveSets[i].set[currentObjective[i]] == symbol)
+            {
+                if (currentObjective[i] == objectiveSets[i].set.Length - 1)
+                {
+                    finishObjective[i] = true;
+                }
+                else
+                {
+                    currentObjective[i]++;
+                }
+            }
+        }
+    }
+
+    public bool BothFinish()
+    {
+        return finishObjective[(int)PlayerName.CASTOR] && finishObjective[(int)PlayerName.POLLUX];
+    }
+
     public ObjectiveSet pickRandom()
     {
         return objectiveSetList[Random.Range(0,objectiveSetList.Length)];
