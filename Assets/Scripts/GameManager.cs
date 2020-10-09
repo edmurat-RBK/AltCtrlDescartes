@@ -41,9 +41,16 @@ public class GameManager : MonoBehaviour
     #endregion
 
     public GameState state;
+    public ObjectiveSet[] objectiveSets;
 
     private void Start()
     {
+        objectiveSets = new ObjectiveSet[2];
+        for(int i = 0; i<2; i++)
+        {
+            objectiveSets[i] = ObjectiveManager.Instance.pickRandom();
+        }
+
         state = GameState.WAIT_BOTH;
     }
 
