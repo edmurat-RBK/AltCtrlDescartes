@@ -42,13 +42,19 @@ public class GameManager : MonoBehaviour
 
     public GameState state;
     public ObjectiveSet[] objectiveSets;
+    public int[] currentObjective;
+    public bool[] finishObjective;
 
     private void Start()
     {
         objectiveSets = new ObjectiveSet[2];
+        currentObjective = new int[2];
+        finishObjective = new bool[2];
         for(int i = 0; i<2; i++)
         {
             objectiveSets[i] = ObjectiveManager.Instance.pickRandom();
+            currentObjective[i] = 0;
+            finishObjective[i] = false;
         }
 
         state = GameState.WAIT_BOTH;
@@ -62,12 +68,12 @@ public class GameManager : MonoBehaviour
                 if(SlotManager.Instance.cardDown[(int)PlayerName.CASTOR])
                 {
                     state = GameState.WAIT_POLLUX;
-                    Debug.Log("Game state switch to WAIT_POLLUX");
+                    //Debug.Log("Game state switch to WAIT_POLLUX");
                 }
                 else if (SlotManager.Instance.cardDown[(int)PlayerName.POLLUX])
                 {
                     state = GameState.WAIT_CASTOR;
-                    Debug.Log("Game state switch to WAIT_CASTOR");
+                    //Debug.Log("Game state switch to WAIT_CASTOR");
                 }
                 break;
 
@@ -75,7 +81,7 @@ public class GameManager : MonoBehaviour
                 if (SlotManager.Instance.cardDown[(int)PlayerName.CASTOR])
                 {
                     state = GameState.FEEDBACK;
-                    Debug.Log("Game state switch to FEEDBACK");
+                    //Debug.Log("Game state switch to FEEDBACK");
                 }
                 break;
 
@@ -83,35 +89,64 @@ public class GameManager : MonoBehaviour
                 if (SlotManager.Instance.cardDown[(int)PlayerName.POLLUX])
                 {
                     state = GameState.FEEDBACK;
-                    Debug.Log("Game state switch to FEEDBACK");
+                    //Debug.Log("Game state switch to FEEDBACK");
                 }
                 break;
 
             case GameState.FEEDBACK:
-                state = GameState.RESET;
-                Debug.Log("Game state switch to RESET");
+                // Compare cards
+                CardSymbol successSymbol;
+                if(SlotManager.Instance.Success(out successSymbol))
+                {
+                    Debug.Log("Round successful with symbol : " + (successSymbol == CardSymbol.TRIANGLE ? "TRIANGLE" : successSymbol == CardSymbol.SQUARE ? "SQUARE" : "CIRCLE"));
+                    for(int i = 0; i<2; i++)
+                    {
+                        if(objectiveSets[i].set[currentObjective[i]] == successSymbol)
+                        {
+                            if(currentObjective[i] == objectiveSets[i].set.Length-1)
+                            {
+                                finishObjective[i] = true;
+                            }
+                            else
+                            {
+                                currentObjective[i]++;
+                            }
+                        }
+                    }
+                }
+
+                // Apply score
+
+
+                // Send feedback
+
+                if(finishObjective[(int)PlayerName.CASTOR] && finishObjective[(int)PlayerName.POLLUX])
+                {
+                    state = GameState.END;
+                }
+                else
+                {
+                    state = GameState.RESET;
+                }
+                //Debug.Log("Game state switch to RESET");
                 break;
 
             case GameState.RESET:
                 foreach(SlotAgent sa in SlotManager.Instance.slotAgents)
                 {
-                    if(sa.state != SlotState.EMPTY && !sa.locked)
-                    {
-                        sa.locked = true;
-                        sa.state = SlotState.EMPTY;
-                    }
-                    else if(sa.state == SlotState.EMPTY && sa.locked)
-                    {
-                        sa.locked = false;
-                    }
+                    sa.ResetToNextTurn();
                 }
 
-                //Reset cardDown array
                 SlotManager.Instance.cardDown[0] = false;
                 SlotManager.Instance.cardDown[1] = false;
 
                 state = GameState.WAIT_BOTH;
-                Debug.Log("Game state switch to WAIT_BOTH");
+                //Debug.Log("Game state switch to WAIT_BOTH");
+                break;
+
+            case GameState.END:
+                // Stop gameplay
+                Debug.LogWarning("Game ended !");
                 break;
         }
     }

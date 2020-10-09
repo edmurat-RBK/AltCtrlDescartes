@@ -9,6 +9,12 @@ public class SlotAgent
 
     public void Update(string uid)
     {
+        if (locked)
+        {
+            Debug.LogWarning("This slot is locked");
+            return;
+        }
+
         NFCManager.EncyclopediaEntry ee;
         if(NFCManager.Instance.encyclopedia.TryGetValue(uid, out ee))
         {
@@ -26,6 +32,19 @@ public class SlotAgent
                     state = SlotState.CIRCLE;
                     break;
             }
+        }
+    }
+
+    public void ResetToNextTurn()
+    {
+        if(state == SlotState.EMPTY && locked)
+        {
+            locked = false;
+        }
+        else if(state != SlotState.EMPTY && !locked)
+        {
+            state = SlotState.EMPTY;
+            locked = true;
         }
     }
 }

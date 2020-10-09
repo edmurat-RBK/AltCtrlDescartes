@@ -4,5 +4,6 @@
     WAIT_CASTOR,
     WAIT_POLLUX,
     FEEDBACK,
-    RESET
+    RESET,
+    END
 }

@@ -553,6 +553,13 @@ MonoBehaviour:
   objectiveSetList:
   - {fileID: 11400000, guid: da91d60df70e39e4484b7d944eebc040, type: 2}
   - {fileID: 11400000, guid: 924ce37530eb8f845aaee1b2446e3139, type: 2}
+  - {fileID: 11400000, guid: a94ccce428900ba40b668320f802978d, type: 2}
+  - {fileID: 11400000, guid: 59e768e309e98774c914f8d08493dfe0, type: 2}
+  - {fileID: 11400000, guid: 4d9c87956f7936d4bb73115a4088e1f9, type: 2}
+  - {fileID: 11400000, guid: a0964591dcb690c46bb53f259ee35466, type: 2}
+  - {fileID: 11400000, guid: 955c83e423a38a547a0a2bc598be5b0c, type: 2}
+  - {fileID: 11400000, guid: 72d7c5e44e8e19b42b35d7af084d327c, type: 2}
+  - {fileID: 11400000, guid: 60328ae90a9d3d64ea7ba55b27c4314c, type: 2}
 --- !u!1 &1254540123
 GameObject:
   m_ObjectHideFlags: 0
@@ -633,3 +640,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   objectiveSets: []
+  currentObjective: 
+  finishObjective: 

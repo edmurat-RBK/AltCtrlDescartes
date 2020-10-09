@@ -61,44 +61,76 @@ public class SlotManager : MonoBehaviour
         string reader = dataSplit[1]; 
         string uid = dataSplit[2];
 
-        Debug.Log("Data received from Arduino\n"+data);
+        //Debug.Log("Data received from Arduino\n"+data);
 
         if(GameManager.Instance.state == GameState.WAIT_BOTH || GameManager.Instance.state == GameState.WAIT_CASTOR || GameManager.Instance.state == GameState.WAIT_POLLUX)
         {
             if (device.Equals("CASTOR") && !cardDown[(int)PlayerName.CASTOR])
             {
-                if (reader.Equals("ALPHA"))
+                if (reader.Equals("ALPHA") && !slotAgents[(int)SlotName.ALPHA].locked)
                 {
                     slotAgents[(int)SlotName.ALPHA].Update(uid);
+                    cardDown[(int)PlayerName.CASTOR] = true;
                 }
-                else if (reader.Equals("BETA"))
+                else if (reader.Equals("BETA") && !slotAgents[(int)SlotName.BETA].locked)
                 {
                     slotAgents[(int)SlotName.BETA].Update(uid);
+                    cardDown[(int)PlayerName.CASTOR] = true;
                 }
-                else if (reader.Equals("GAMMA"))
+                else if (reader.Equals("GAMMA") && !slotAgents[(int)SlotName.GAMMA].locked)
                 {
                     slotAgents[(int)SlotName.GAMMA].Update(uid);
+                    cardDown[(int)PlayerName.CASTOR] = true;
                 }
-
-                cardDown[(int)PlayerName.CASTOR] = true;
             }
             else if (device.Equals("POLLUX") && !cardDown[(int)PlayerName.POLLUX])
             {
-                if (reader.Equals("ALPHA"))
+                if (reader.Equals("ALPHA") && !slotAgents[(int)SlotName.DELTA].locked)
                 {
                     slotAgents[(int)SlotName.DELTA].Update(uid);
+                    cardDown[(int)PlayerName.POLLUX] = true;
                 }
-                else if (reader.Equals("BETA"))
+                else if (reader.Equals("BETA") && !slotAgents[(int)SlotName.EPSILON].locked)
                 {
                     slotAgents[(int)SlotName.EPSILON].Update(uid);
+                    cardDown[(int)PlayerName.POLLUX] = true;
                 }
-                else if (reader.Equals("GAMMA"))
+                else if (reader.Equals("GAMMA") && !slotAgents[(int)SlotName.DZETA].locked)
                 {
                     slotAgents[(int)SlotName.DZETA].Update(uid);
+                    cardDown[(int)PlayerName.POLLUX] = true;
                 }
-
-                cardDown[(int)PlayerName.POLLUX] = true;
             }
         }
+    }
+
+    public bool Success(out CardSymbol symbol)
+    {
+        for(var i=0; i<3; i++)
+        {
+            if(slotAgents[i].state != SlotState.EMPTY && slotAgents[i].state == slotAgents[i+3].state)
+            {
+                switch(slotAgents[i].state)
+                {
+                    case SlotState.TRIANGLE:
+                        symbol = CardSymbol.TRIANGLE;
+                        break;
+
+                    case SlotState.SQUARE:
+                        symbol = CardSymbol.SQUARE;
+                        break;
+
+                    case SlotState.CIRCLE:
+                        symbol = CardSymbol.CIRCLE;
+                        break;
+
+                    default:
+                        throw new System.Exception();
+                }
+                return true;
+            }
+        }
+        symbol = CardSymbol.TRIANGLE;
+        return false;
     }
 }
