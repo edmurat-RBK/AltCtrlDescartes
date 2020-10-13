@@ -1,7 +1,7 @@
 ﻿public enum SlotState
 {
     EMPTY,
-    TRIANGLE,
-    SQUARE,
-    CIRCLE
+    PINK,
+    BLUE,
+    ORANGE
 }

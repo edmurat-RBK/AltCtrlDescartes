@@ -83,7 +83,7 @@ public class GameManager : MonoBehaviour
                 if(SlotManager.Instance.CheckSuccess(out successSymbol))
                 {
                     ObjectiveManager.Instance.Success(successSymbol);
-                    Debug.Log("Round successful with symbol : " + (successSymbol == CardSymbol.TRIANGLE ? "TRIANGLE" : successSymbol == CardSymbol.SQUARE ? "SQUARE" : "CIRCLE"));
+                    Debug.Log("Round successful with symbol : " + (successSymbol == CardSymbol.PINK ? "PINK" : successSymbol == CardSymbol.BLUE ? "BLUE" : "ORANGE"));
                 }
 
                 // Apply score

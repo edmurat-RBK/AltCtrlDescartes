@@ -112,16 +112,16 @@ public class SlotManager : MonoBehaviour
             {
                 switch(slotAgents[i].state)
                 {
-                    case SlotState.TRIANGLE:
-                        symbol = CardSymbol.TRIANGLE;
+                    case SlotState.PINK:
+                        symbol = CardSymbol.PINK;
                         break;
 
-                    case SlotState.SQUARE:
-                        symbol = CardSymbol.SQUARE;
+                    case SlotState.BLUE:
+                        symbol = CardSymbol.BLUE;
                         break;
 
-                    case SlotState.CIRCLE:
-                        symbol = CardSymbol.CIRCLE;
+                    case SlotState.ORANGE:
+                        symbol = CardSymbol.ORANGE;
                         break;
 
                     default:
@@ -130,7 +130,7 @@ public class SlotManager : MonoBehaviour
                 return true;
             }
         }
-        symbol = CardSymbol.TRIANGLE;
+        symbol = CardSymbol.PINK;
         return false;
     }
 }

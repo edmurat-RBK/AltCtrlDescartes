@@ -1,6 +1,6 @@
 ﻿public enum CardSymbol
 {
-    TRIANGLE,
-    SQUARE,
-    CIRCLE
+    PINK,
+    BLUE,
+    ORANGE
 }

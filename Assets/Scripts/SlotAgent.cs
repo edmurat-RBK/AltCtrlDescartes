@@ -20,16 +20,16 @@ public class SlotAgent
         {
             switch(ee.card)
             {
-                case CardSymbol.TRIANGLE:
-                    state = SlotState.TRIANGLE;
+                case CardSymbol.PINK:
+                    state = SlotState.PINK;
                     break;
 
-                case CardSymbol.SQUARE:
-                    state = SlotState.SQUARE;
+                case CardSymbol.BLUE:
+                    state = SlotState.BLUE;
                     break;
 
-                case CardSymbol.CIRCLE:
-                    state = SlotState.CIRCLE;
+                case CardSymbol.ORANGE:
+                    state = SlotState.ORANGE;
                     break;
             }
         }
