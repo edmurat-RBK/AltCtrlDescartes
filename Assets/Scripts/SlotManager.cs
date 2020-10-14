@@ -133,4 +133,74 @@ public class SlotManager : MonoBehaviour
         symbol = CardSymbol.PINK;
         return false;
     }
+
+    public void SendFakeInput(SlotName slot, PlayerName player, CardSymbol symbol)
+    {
+        string send = "";
+        switch (slot)
+        {
+            case SlotName.ALPHA:
+                send += "ALPHA";
+                break;
+
+            case SlotName.BETA:
+                send += "BETA";
+                break;
+
+            case SlotName.GAMMA:
+                send += "GAMMA";
+                break;
+
+            case SlotName.DELTA:
+                send += "DELTA";
+                break;
+
+            case SlotName.EPSILON:
+                send += "EPSILON";
+                break;
+
+            case SlotName.DZETA:
+                send += "DZETA";
+                break;
+        }
+
+        send += ":";
+
+        if(player == PlayerName.CASTOR)
+        {
+            switch (symbol)
+            {
+                case CardSymbol.PINK:
+                    send += "B045D232";
+                    break;
+
+                case CardSymbol.BLUE:
+                    send += "E42A772A";
+                    break;
+
+                case CardSymbol.ORANGE:
+                    send += "020BF434";
+                    break;
+            }
+        }
+        else if(player == PlayerName.POLLUX)
+        {
+            switch (symbol)
+            {
+                case CardSymbol.PINK:
+                    send += "14F4CD2B";
+                    break;
+
+                case CardSymbol.BLUE:
+                    send += "F2EDD433";
+                    break;
+
+                case CardSymbol.ORANGE:
+                    send += "D0DCFA32";
+                    break;
+            }
+        }
+
+        GetData(send, null);
+    }
 }

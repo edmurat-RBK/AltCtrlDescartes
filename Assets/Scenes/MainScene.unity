@@ -216,7 +216,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 114023058375386772, guid: bb5e6aea88a650f4a8317e74940b0ea4, type: 3}
       propertyPath: ManagerState
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114023058375386772, guid: bb5e6aea88a650f4a8317e74940b0ea4, type: 3}
       propertyPath: OnDataReceivedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -257,6 +257,10 @@ PrefabInstance:
     - target: {fileID: 114023058375386772, guid: bb5e6aea88a650f4a8317e74940b0ea4, type: 3}
       propertyPath: delayBeforeDiscover
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114023058375386772, guid: bb5e6aea88a650f4a8317e74940b0ea4, type: 3}
+      propertyPath: autoDiscover
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bb5e6aea88a650f4a8317e74940b0ea4, type: 3}
@@ -702,7 +706,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -1263,6 +1267,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: da91d60df70e39e4484b7d944eebc040, type: 2}
   - {fileID: 11400000, guid: 924ce37530eb8f845aaee1b2446e3139, type: 2}
   - {fileID: 11400000, guid: a94ccce428900ba40b668320f802978d, type: 2}
+  - {fileID: 11400000, guid: 50587cf407599e84396c3a2029d73852, type: 2}
+  - {fileID: 11400000, guid: 6fdbf648b38ca2447bb1c33663914653, type: 2}
+  - {fileID: 11400000, guid: e94fb255a9ccfe44b9fba9ff7eabdd7e, type: 2}
   objectiveSets: []
   currentObjective: 
   finishObjective: 
