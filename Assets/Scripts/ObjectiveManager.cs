@@ -45,6 +45,16 @@ public class ObjectiveManager : MonoBehaviour
     public int[] currentObjective;
     public bool[] finishObjective;
 
+    [Space(10)]
+
+    [Header("Sprites")]
+    public Sprite pinkSprite;
+    public Sprite blueSprite;
+    public Sprite orangeSprite;
+    public Sprite pinkValidatedSprite;
+    public Sprite blueValidatedSprite;
+    public Sprite orangeValidatedSprite;
+
     private void Start()
     {
         objectiveSets = new ObjectiveSet[2];
