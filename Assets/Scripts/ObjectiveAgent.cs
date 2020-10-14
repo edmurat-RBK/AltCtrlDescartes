@@ -6,7 +6,7 @@ public class ObjectiveAgent : MonoBehaviour
 {
     public PlayerName player;
     public int index;
-    public CardSymbol symbol;
+    private CardSymbol symbol;
 
     private SpriteRenderer spriteRenderer;
 
