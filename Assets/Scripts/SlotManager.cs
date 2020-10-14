@@ -57,15 +57,14 @@ public class SlotManager : MonoBehaviour
     public void GetData(string data, UduinoDevice board)
     {
         string[] dataSplit = data.Split(':');
-        string device = dataSplit[0];
-        string reader = dataSplit[1]; 
-        string uid = dataSplit[2];
+        string reader = dataSplit[0]; 
+        string uid = dataSplit[1];
 
         //Debug.Log("Data received from Arduino\n"+data);
 
         if(GameManager.Instance.state == GameState.WAIT_BOTH || GameManager.Instance.state == GameState.WAIT_CASTOR || GameManager.Instance.state == GameState.WAIT_POLLUX)
         {
-            if (device.Equals("CASTOR") && !cardDown[(int)PlayerName.CASTOR])
+            if (!cardDown[(int)PlayerName.CASTOR])
             {
                 if (reader.Equals("ALPHA") && !slotAgents[(int)SlotName.ALPHA].locked)
                 {
@@ -83,19 +82,20 @@ public class SlotManager : MonoBehaviour
                     cardDown[(int)PlayerName.CASTOR] = true;
                 }
             }
-            else if (device.Equals("POLLUX") && !cardDown[(int)PlayerName.POLLUX])
+            
+            if (!cardDown[(int)PlayerName.POLLUX])
             {
-                if (reader.Equals("ALPHA") && !slotAgents[(int)SlotName.DELTA].locked)
+                if (reader.Equals("DELTA") && !slotAgents[(int)SlotName.DELTA].locked)
                 {
                     slotAgents[(int)SlotName.DELTA].Update(uid);
                     cardDown[(int)PlayerName.POLLUX] = true;
                 }
-                else if (reader.Equals("BETA") && !slotAgents[(int)SlotName.EPSILON].locked)
+                else if (reader.Equals("EPSILON") && !slotAgents[(int)SlotName.EPSILON].locked)
                 {
                     slotAgents[(int)SlotName.EPSILON].Update(uid);
                     cardDown[(int)PlayerName.POLLUX] = true;
                 }
-                else if (reader.Equals("GAMMA") && !slotAgents[(int)SlotName.DZETA].locked)
+                else if (reader.Equals("DZETA") && !slotAgents[(int)SlotName.DZETA].locked)
                 {
                     slotAgents[(int)SlotName.DZETA].Update(uid);
                     cardDown[(int)PlayerName.POLLUX] = true;
