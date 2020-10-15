@@ -8,7 +8,10 @@ public class ObjectiveAgent : MonoBehaviour
     public int index;
     private CardSymbol symbol;
 
+    [Space(10)]
+
     private SpriteRenderer spriteRenderer;
+    public ParticleSystem smokeParticleSystem;
 
     // Start is called before the first frame update
     void Start()
@@ -19,8 +22,13 @@ public class ObjectiveAgent : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (smokeParticleSystem.isEmitting && ObjectiveManager.Instance.objectiveSets[(int)player].set.Length <= index)
+        {
+            smokeParticleSystem.Stop();
+        }
+
         // If it is the current objective
-        if(ObjectiveManager.Instance.currentObjective[(int)player] == index && !ObjectiveManager.Instance.finishObjective[(int)player])
+        if (ObjectiveManager.Instance.currentObjective[(int)player] == index && !ObjectiveManager.Instance.finishObjective[(int)player])
         {
             switch (ObjectiveManager.Instance.objectiveSets[(int)player].set[index])
             {
@@ -36,6 +44,8 @@ public class ObjectiveAgent : MonoBehaviour
                     spriteRenderer.sprite = ObjectiveManager.Instance.orangeSprite;
                     break;
             }
+
+            smokeParticleSystem.Stop();
         }
         // If the objective is hidden
         else if(ObjectiveManager.Instance.currentObjective[(int)player] < index)
