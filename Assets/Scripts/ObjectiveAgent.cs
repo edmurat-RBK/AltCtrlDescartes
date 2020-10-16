@@ -7,11 +7,13 @@ public class ObjectiveAgent : MonoBehaviour
     public PlayerName player;
     public int index;
     private CardSymbol symbol;
+    private bool successParticle = false;
 
     [Space(10)]
 
     private SpriteRenderer spriteRenderer;
     public ParticleSystem smokeParticleSystem;
+    public ParticleSystem lightParticleSystem;
 
     // Start is called before the first frame update
     void Start()
@@ -68,6 +70,12 @@ public class ObjectiveAgent : MonoBehaviour
                 case CardSymbol.ORANGE:
                     spriteRenderer.sprite = ObjectiveManager.Instance.orangeValidatedSprite;
                     break;
+            }
+
+            if (!successParticle)
+            {
+                lightParticleSystem.Play();
+                successParticle = true;
             }
         }
     }
