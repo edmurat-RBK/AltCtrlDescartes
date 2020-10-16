@@ -11,6 +11,10 @@ public class FakeInputs : Editor
         DrawDefaultInspector();
 
         SlotManager slotManager = (SlotManager)target;
+
+        EditorGUILayout.Space();
+        EditorGUILayout.Space();
+
         if (GUILayout.Button("Send PINK to ALPHA"))
         {
             slotManager.SendFakeInput(SlotName.ALPHA,PlayerName.CASTOR,CardSymbol.PINK);
@@ -54,6 +58,8 @@ public class FakeInputs : Editor
             slotManager.SendFakeInput(SlotName.GAMMA, PlayerName.CASTOR, CardSymbol.ORANGE);
         }
 
+        EditorGUILayout.Space();
+        EditorGUILayout.Space();
         EditorGUILayout.Space();
 
         if (GUILayout.Button("Send PINK to DELTA"))
