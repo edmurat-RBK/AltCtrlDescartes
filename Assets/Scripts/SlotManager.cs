@@ -40,15 +40,23 @@ public class SlotManager : MonoBehaviour
     private static SlotManager _instance = null;
     #endregion
 
-    public SlotAgent[] slotAgents;
+    public Slot[] slots;
     public bool[] cardDown;
+
+    [Space(10)]
+
+    public Sprite emptySlotSprite;
+    public Sprite lockedSlotSprite;
+    public Sprite pinkSlotSprite;
+    public Sprite blueSlotSprite;
+    public Sprite orangeSlotSprite;
 
     private void Awake()
     {
-        slotAgents = new SlotAgent[6];
+        slots = new Slot[6];
         for(int i = 0; i<6; i++)
         {
-            slotAgents[i] = new SlotAgent();
+            slots[i] = new Slot();
         }
 
         cardDown = new bool[2] { false, false };
@@ -66,38 +74,38 @@ public class SlotManager : MonoBehaviour
         {
             if (!cardDown[(int)PlayerName.CASTOR])
             {
-                if (reader.Equals("ALPHA") && !slotAgents[(int)SlotName.ALPHA].locked)
+                if (reader.Equals("ALPHA") && !slots[(int)SlotName.ALPHA].locked)
                 {
-                    slotAgents[(int)SlotName.ALPHA].Update(uid);
+                    slots[(int)SlotName.ALPHA].Update(uid);
                     cardDown[(int)PlayerName.CASTOR] = true;
                 }
-                else if (reader.Equals("BETA") && !slotAgents[(int)SlotName.BETA].locked)
+                else if (reader.Equals("BETA") && !slots[(int)SlotName.BETA].locked)
                 {
-                    slotAgents[(int)SlotName.BETA].Update(uid);
+                    slots[(int)SlotName.BETA].Update(uid);
                     cardDown[(int)PlayerName.CASTOR] = true;
                 }
-                else if (reader.Equals("GAMMA") && !slotAgents[(int)SlotName.GAMMA].locked)
+                else if (reader.Equals("GAMMA") && !slots[(int)SlotName.GAMMA].locked)
                 {
-                    slotAgents[(int)SlotName.GAMMA].Update(uid);
+                    slots[(int)SlotName.GAMMA].Update(uid);
                     cardDown[(int)PlayerName.CASTOR] = true;
                 }
             }
             
             if (!cardDown[(int)PlayerName.POLLUX])
             {
-                if (reader.Equals("DELTA") && !slotAgents[(int)SlotName.DELTA].locked)
+                if (reader.Equals("DELTA") && !slots[(int)SlotName.DELTA].locked)
                 {
-                    slotAgents[(int)SlotName.DELTA].Update(uid);
+                    slots[(int)SlotName.DELTA].Update(uid);
                     cardDown[(int)PlayerName.POLLUX] = true;
                 }
-                else if (reader.Equals("EPSILON") && !slotAgents[(int)SlotName.EPSILON].locked)
+                else if (reader.Equals("EPSILON") && !slots[(int)SlotName.EPSILON].locked)
                 {
-                    slotAgents[(int)SlotName.EPSILON].Update(uid);
+                    slots[(int)SlotName.EPSILON].Update(uid);
                     cardDown[(int)PlayerName.POLLUX] = true;
                 }
-                else if (reader.Equals("DZETA") && !slotAgents[(int)SlotName.DZETA].locked)
+                else if (reader.Equals("DZETA") && !slots[(int)SlotName.DZETA].locked)
                 {
-                    slotAgents[(int)SlotName.DZETA].Update(uid);
+                    slots[(int)SlotName.DZETA].Update(uid);
                     cardDown[(int)PlayerName.POLLUX] = true;
                 }
             }
@@ -108,9 +116,9 @@ public class SlotManager : MonoBehaviour
     {
         for(var i=0; i<3; i++)
         {
-            if(slotAgents[i].state != SlotState.EMPTY && slotAgents[i].state == slotAgents[i+3].state)
+            if(slots[i].state != SlotState.EMPTY && slots[i].state == slots[i+3].state)
             {
-                switch(slotAgents[i].state)
+                switch(slots[i].state)
                 {
                     case SlotState.PINK:
                         symbol = CardSymbol.PINK;

@@ -41,11 +41,13 @@ public class GameManager : MonoBehaviour
     #endregion
 
     public GameState state;
+    private bool coroutineFeedback;
     
 
     private void Start()
     {
         state = GameState.WAIT_BOTH;
+        coroutineFeedback = false;
     }
 
     private void Update()
@@ -64,16 +66,16 @@ public class GameManager : MonoBehaviour
                 break;
 
             case GameState.WAIT_CASTOR:
-                if (SlotManager.Instance.cardDown[(int)PlayerName.CASTOR])
+                if (SlotManager.Instance.cardDown[(int)PlayerName.CASTOR] && !coroutineFeedback)
                 {
-                    state = GameState.FEEDBACK;
+                    StartCoroutine(SwitchStateFeedback());
                 }
                 break;
 
             case GameState.WAIT_POLLUX:
-                if (SlotManager.Instance.cardDown[(int)PlayerName.POLLUX])
+                if (SlotManager.Instance.cardDown[(int)PlayerName.POLLUX] && !coroutineFeedback)
                 {
-                    state = GameState.FEEDBACK;
+                    StartCoroutine(SwitchStateFeedback());
                 }
                 break;
 
@@ -102,9 +104,9 @@ public class GameManager : MonoBehaviour
                 break;
 
             case GameState.RESET:
-                foreach(SlotAgent sa in SlotManager.Instance.slotAgents)
+                foreach(Slot s in SlotManager.Instance.slots)
                 {
-                    sa.ResetToNextTurn();
+                    s.ResetToNextTurn();
                 }
 
                 SlotManager.Instance.cardDown[0] = false;
@@ -118,5 +120,13 @@ public class GameManager : MonoBehaviour
                 Debug.LogWarning("Game ended !");
                 break;
         }
+    }
+
+    IEnumerator SwitchStateFeedback()
+    {
+        coroutineFeedback = true;
+        yield return new WaitForSeconds(3f);
+        state = GameState.FEEDBACK;
+        coroutineFeedback = false;
     }
 }

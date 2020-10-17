@@ -15,13 +15,11 @@ public class ObjectiveAgent : MonoBehaviour
     public ParticleSystem smokeParticleSystem;
     public ParticleSystem lightParticleSystem;
 
-    // Start is called before the first frame update
     void Start()
     {
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (smokeParticleSystem.isEmitting && ObjectiveManager.Instance.objectiveSets[(int)player].set.Length <= index)

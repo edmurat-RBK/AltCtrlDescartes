@@ -2,49 +2,46 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SlotAgent
+public class SlotAgent : MonoBehaviour
 {
-    public SlotState state = SlotState.EMPTY;
-    public bool locked = false;
+    public int index;
 
-    public void Update(string uid)
+    [Space(10)]
+
+    private SpriteRenderer spriteRenderer;
+    public ParticleSystem lockingParticuleSystem;
+
+    private void Start()
     {
-        if (locked)
-        {
-            Debug.LogWarning("This slot is locked");
-            return;
-        }
-
-        NFCManager.EncyclopediaEntry ee;
-        if(NFCManager.Instance.encyclopedia.TryGetValue(uid, out ee))
-        {
-            switch(ee.card)
-            {
-                case CardSymbol.PINK:
-                    state = SlotState.PINK;
-                    break;
-
-                case CardSymbol.BLUE:
-                    state = SlotState.BLUE;
-                    break;
-
-                case CardSymbol.ORANGE:
-                    state = SlotState.ORANGE;
-                    break;
-            }
-        }
+        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
     }
 
-    public void ResetToNextTurn()
+    private void Update()
     {
-        if(state == SlotState.EMPTY && locked)
+        if(SlotManager.Instance.slots[index].locked)
         {
-            locked = false;
+            spriteRenderer.sprite = SlotManager.Instance.lockedSlotSprite;
         }
-        else if(state != SlotState.EMPTY && !locked)
+        else
         {
-            state = SlotState.EMPTY;
-            locked = true;
+            switch (SlotManager.Instance.slots[index].state)
+            {
+                case SlotState.EMPTY:
+                    spriteRenderer.sprite = SlotManager.Instance.emptySlotSprite;
+                    break;
+
+                case SlotState.PINK:
+                    spriteRenderer.sprite = SlotManager.Instance.pinkSlotSprite;
+                    break;
+
+                case SlotState.BLUE:
+                    spriteRenderer.sprite = SlotManager.Instance.blueSlotSprite;
+                    break;
+
+                case SlotState.ORANGE:
+                    spriteRenderer.sprite = SlotManager.Instance.orangeSlotSprite;
+                    break;
+            }
         }
     }
 }
