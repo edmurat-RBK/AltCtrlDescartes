@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Uduino;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -41,12 +42,16 @@ public class GameManager : MonoBehaviour
     #endregion
 
     public GameState state;
+    public SynchroScore score;
+    public Text scoreDisplayCastor;
+    public Text scoreDisplayPollux;
     private bool coroutineFeedback;
     
 
     private void Start()
     {
         state = GameState.WAIT_BOTH;
+        score = new SynchroScore();
         coroutineFeedback = false;
     }
 
@@ -85,10 +90,15 @@ public class GameManager : MonoBehaviour
                 if(SlotManager.Instance.CheckSuccess(out successSymbol))
                 {
                     ObjectiveManager.Instance.Success(successSymbol);
-                    Debug.Log("Round successful with symbol : " + (successSymbol == CardSymbol.PINK ? "PINK" : successSymbol == CardSymbol.BLUE ? "BLUE" : "ORANGE"));
+                    score.IncreaseScore();
+                }
+                else
+                {
+                    score.DecayScore();
                 }
 
-                // Apply score
+                scoreDisplayCastor.text = score.score + "%";
+                scoreDisplayPollux.text = score.score + "%";
 
                 // Send feedback
 
@@ -116,7 +126,6 @@ public class GameManager : MonoBehaviour
                 break;
 
             case GameState.END:
-                // Stop gameplay
                 Debug.LogWarning("Game ended !");
                 break;
         }

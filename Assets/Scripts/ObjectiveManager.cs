@@ -55,7 +55,7 @@ public class ObjectiveManager : MonoBehaviour
     public Sprite blueValidatedSprite;
     public Sprite orangeValidatedSprite;
 
-    private void Start()
+    private void Awake()
     {
         objectiveSets = new ObjectiveSet[2];
         currentObjective = new int[2];

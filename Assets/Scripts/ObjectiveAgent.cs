@@ -18,15 +18,15 @@ public class ObjectiveAgent : MonoBehaviour
     void Start()
     {
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+
+        if (ObjectiveManager.Instance.objectiveSets[(int)player].set.Length > index)
+        {
+            smokeParticleSystem.Play();
+        }
     }
 
     void Update()
     {
-        if (smokeParticleSystem.isEmitting && ObjectiveManager.Instance.objectiveSets[(int)player].set.Length <= index)
-        {
-            smokeParticleSystem.Stop();
-        }
-
         // If it is the current objective
         if (ObjectiveManager.Instance.currentObjective[(int)player] == index && !ObjectiveManager.Instance.finishObjective[(int)player])
         {
