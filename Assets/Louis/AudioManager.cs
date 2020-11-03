@@ -35,7 +35,7 @@ public class AudioManager : MonoBehaviour
     private AudioSource sfxSource2;
     #endregion
 
-    private void Start()
+    private void Awake()
     {
 
         DontDestroyOnLoad(this.gameObject);
@@ -45,7 +45,7 @@ public class AudioManager : MonoBehaviour
         musicSource2 = this.gameObject.AddComponent<AudioSource>();
         sfxSource = this.gameObject.AddComponent<AudioSource>();
         sfxSource2 = this.gameObject.AddComponent<AudioSource>();
-
+        Debug.Log(musicSource);
         // loop les musiques
         musicSource.loop = true;
         musicSource2.loop = true;
@@ -57,6 +57,8 @@ public class AudioManager : MonoBehaviour
     //player one is 1 player 2 is -1
     public void PlayMusic(AudioClip musicClip)
     {
+        Debug.Log(musicClip);
+        Debug.Log(musicSource);
         musicSource.clip = musicClip;
         musicSource.Play();
         musicSource.panStereo = 1;
