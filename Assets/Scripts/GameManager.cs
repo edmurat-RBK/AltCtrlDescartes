@@ -87,7 +87,7 @@ public class GameManager : MonoBehaviour
             case GameState.FEEDBACK:
                 // Compare cards
                 CardSymbol successSymbol;
-                if(SlotManager.Instance.CheckSuccess(out successSymbol))
+                if(SlotManager.Instance.CheckFullSuccess(out successSymbol))
                 {
                     ObjectiveManager.Instance.Success(successSymbol);
                     score.IncreaseScore();
