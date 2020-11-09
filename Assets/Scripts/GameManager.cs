@@ -46,10 +46,20 @@ public class GameManager : MonoBehaviour
     public Text scoreDisplayCastor;
     public Text scoreDisplayPollux;
     private bool coroutineFeedback;
-    
+
+    #region Son
+    public AudioManager audioManager;
+    public AudioClip feedbackPositif;
+    public float volumePositif;
+    public AudioClip feedbackSymbol;
+    public float volumeSymbol;
+    public AudioClip feedbackSlot;
+    public float volumeSlot;
+    #endregion
 
     private void Start()
     {
+        audioManager = AudioManager.Instance;
         state = GameState.WAIT_BOTH;
         score = new SynchroScore();
         coroutineFeedback = false;
@@ -87,8 +97,10 @@ public class GameManager : MonoBehaviour
             case GameState.FEEDBACK:
                 // Compare cards
                 CardSymbol successSymbol;
+                int slotIndex;
                 if(SlotManager.Instance.CheckFullSuccess(out successSymbol))
                 {
+                    audioManager.PlaySFX(feedbackPositif,volumePositif);
                     ObjectiveManager.Instance.Success(successSymbol);
                     score.IncreaseScore();
                 }
@@ -96,7 +108,16 @@ public class GameManager : MonoBehaviour
                 {
                     score.DecayScore();
                 }
+                if (SlotManager.Instance.CheckSymbolSuccess(out successSymbol))
+                {
+                    audioManager.PlaySFX(feedbackSymbol, volumeSymbol);
 
+                }
+                if (SlotManager.Instance.CheckSlotSuccess(out slotIndex))
+                {
+                    audioManager.PlaySFX(feedbackSlot, volumeSlot);
+
+                }
                 scoreDisplayCastor.text = score.score + "%";
                 scoreDisplayPollux.text = score.score + "%";
 

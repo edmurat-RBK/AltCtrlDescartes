@@ -9,6 +9,7 @@ public class MusicManager : MonoBehaviour
     public AudioManager audioManager;
     void Start()
     {
+        audioManager = AudioManager.Instance;
         audioManager.PlayMusic(Music1);
         audioManager.PlayMusic2(Music2);
 

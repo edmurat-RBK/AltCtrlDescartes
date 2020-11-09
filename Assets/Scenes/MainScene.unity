@@ -2066,7 +2066,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 6.9231076
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -3690,6 +3690,13 @@ MonoBehaviour:
   state: 0
   scoreDisplayCastor: {fileID: 1669016586}
   scoreDisplayPollux: {fileID: 3291769}
+  audioManager: {fileID: 0}
+  feedbackPositif: {fileID: 8300000, guid: 2e070fc26ac58b740b94bf9af497c0ad, type: 3}
+  volumePositif: 1
+  feedbackSymbol: {fileID: 8300000, guid: dec75620a4dfc844bafafc44afd41331, type: 3}
+  volumeSymbol: 1
+  feedbackSlot: {fileID: 8300000, guid: dc9c64d9711173447aaeec3f19d5573c, type: 3}
+  volumeSlot: 1
 --- !u!1 &1426069083
 GameObject:
   m_ObjectHideFlags: 0

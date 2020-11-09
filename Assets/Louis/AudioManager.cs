@@ -32,7 +32,7 @@ public class AudioManager : MonoBehaviour
     private AudioSource musicSource;
     private AudioSource musicSource2;
     private AudioSource sfxSource;
-    private AudioSource sfxSource2;
+ 
     #endregion
 
     private void Awake()
@@ -44,7 +44,7 @@ public class AudioManager : MonoBehaviour
         musicSource = this.gameObject.AddComponent<AudioSource>();
         musicSource2 = this.gameObject.AddComponent<AudioSource>();
         sfxSource = this.gameObject.AddComponent<AudioSource>();
-        sfxSource2 = this.gameObject.AddComponent<AudioSource>();
+
         Debug.Log(musicSource);
         // loop les musiques
         musicSource.loop = true;
@@ -73,12 +73,7 @@ public class AudioManager : MonoBehaviour
     public void PlaySFX(AudioClip clip, float volume)
     {
         sfxSource.PlayOneShot(clip,volume);
-        sfxSource.panStereo = 1;
+
     }
-    public void PlaySFX2(AudioClip clip, float volume)
-    {
-        sfxSource2.PlayOneShot(clip,volume);
-        sfxSource2.panStereo = -1;
-        
-    }
+
 }
