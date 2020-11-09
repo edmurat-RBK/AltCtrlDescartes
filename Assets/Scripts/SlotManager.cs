@@ -112,7 +112,7 @@ public class SlotManager : MonoBehaviour
         }
     }
 
-    public bool CheckSuccess(out CardSymbol symbol)
+    public bool CheckFullSuccess(out CardSymbol symbol)
     {
         for(var i=0; i<3; i++)
         {
@@ -139,6 +139,56 @@ public class SlotManager : MonoBehaviour
             }
         }
         symbol = CardSymbol.PINK;
+        return false;
+    }
+
+    public bool CheckSymbolSuccess(out CardSymbol symbol)
+    {
+        for (var i = 0; i < 3; i++)
+        {
+            if (slots[i].state != SlotState.EMPTY)
+            {
+                for(int j = 3; j < 6; j++)
+                {
+                    if(slots[i].state == slots[j].state)
+                    {
+                        switch (slots[i].state)
+                        {
+                            case SlotState.PINK:
+                                symbol = CardSymbol.PINK;
+                                break;
+
+                            case SlotState.BLUE:
+                                symbol = CardSymbol.BLUE;
+                                break;
+
+                            case SlotState.ORANGE:
+                                symbol = CardSymbol.ORANGE;
+                                break;
+
+                            default:
+                                throw new System.Exception();
+                        }
+                        return true;
+                    }
+                }
+            }
+        }
+        symbol = CardSymbol.PINK;
+        return false;
+    }
+
+    public bool CheckSlotSuccess(out int slotIndex)
+    {
+        for (var i = 0; i < 3; i++)
+        {
+            if (slots[i].state != SlotState.EMPTY && slots[i+3].state != SlotState.EMPTY)
+            {
+                slotIndex = i;
+                return true;
+            }
+        }
+        slotIndex = -1;
         return false;
     }
 
