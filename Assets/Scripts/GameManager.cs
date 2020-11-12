@@ -100,7 +100,6 @@ public class GameManager : MonoBehaviour
                 int slotIndex;
                 if(SlotManager.Instance.CheckFullSuccess(out successSymbol))
                 {
-                    audioManager.PlaySFX(feedbackPositif,volumePositif);
                     ObjectiveManager.Instance.Success(successSymbol);
                     score.IncreaseScore();
                 }
@@ -108,16 +107,7 @@ public class GameManager : MonoBehaviour
                 {
                     score.DecayScore();
                 }
-                if (SlotManager.Instance.CheckSymbolSuccess(out successSymbol))
-                {
-                    audioManager.PlaySFX(feedbackSymbol, volumeSymbol);
-
-                }
-                if (SlotManager.Instance.CheckSlotSuccess(out slotIndex))
-                {
-                    audioManager.PlaySFX(feedbackSlot, volumeSlot);
-
-                }
+                
                 scoreDisplayCastor.text = score.score + "%";
                 scoreDisplayPollux.text = score.score + "%";
 
@@ -155,6 +145,31 @@ public class GameManager : MonoBehaviour
     IEnumerator SwitchStateFeedback()
     {
         coroutineFeedback = true;
+
+        CardSymbol successSymbol;
+        int slotIndex;
+        if (SlotManager.Instance.CheckFullSuccess(out successSymbol))
+        {
+            Debug.Log("Full Success");
+            audioManager.PlaySFX(feedbackPositif, volumePositif);
+        }
+        else
+        {
+            if (SlotManager.Instance.CheckSymbolSuccess(out successSymbol))
+            {
+                Debug.Log("Symbol Success");
+                audioManager.PlaySFX(feedbackSymbol, volumeSymbol);
+
+            }
+
+            if (SlotManager.Instance.CheckSlotSuccess(out slotIndex))
+            {
+                Debug.Log("Slot Success");
+                audioManager.PlaySFX(feedbackSlot, volumeSlot);
+
+            }
+        }
+
         yield return new WaitForSeconds(3f);
         state = GameState.FEEDBACK;
         coroutineFeedback = false;
