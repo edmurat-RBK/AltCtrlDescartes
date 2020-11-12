@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class SlotAgent : MonoBehaviour
 {
@@ -13,21 +14,34 @@ public class SlotAgent : MonoBehaviour
     public ParticleSystem pinkParticleSystem;
     public ParticleSystem blueParticleSystem;
     public ParticleSystem orangeParticleSystem;
+    public VisualEffect yellowBasicFeedback;
+    public VisualEffect blueBasicFeedback;
+    public VisualEffect orangeBasicFeedback;
+    public GameObject YellowFeedback;
+    public GameObject BlueFeedback;
+    public GameObject OrangeFeedback;
+    private bool visualeffectRun;
+
 
     private bool particleSystemRun = false;
 
     private void Start()
     {
-        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+ //       spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
     }
 
     private void Update()
     {
         if(SlotManager.Instance.slots[index].locked)
         {
-            spriteRenderer.sprite = SlotManager.Instance.lockedSlotSprite;
-
-            if(!lockingParticleSystem.isPlaying)
+          //  spriteRenderer.sprite = SlotManager.Instance.lockedSlotSprite;
+            yellowBasicFeedback.Stop();
+            blueBasicFeedback.Stop();
+            orangeBasicFeedback.Stop();
+            YellowFeedback.SetActive(false);
+            BlueFeedback.SetActive(false);
+            OrangeFeedback.SetActive(false);
+            if (!lockingParticleSystem.isPlaying)
             {
                 lockingParticleSystem.Play();
             }
@@ -36,45 +50,80 @@ public class SlotAgent : MonoBehaviour
         }
         else
         {
-            if(lockingParticleSystem.isPlaying)
+
+            if (lockingParticleSystem.isPlaying)
             {
+                yellowBasicFeedback.Stop();
+                blueBasicFeedback.Stop();
+                orangeBasicFeedback.Stop();
                 lockingParticleSystem.Stop();
+                YellowFeedback.SetActive(false);
+                BlueFeedback.SetActive(false);
+                OrangeFeedback.SetActive(false);
             }
 
             switch (SlotManager.Instance.slots[index].state)
             {
                 case SlotState.EMPTY:
-                    spriteRenderer.sprite = SlotManager.Instance.emptySlotSprite;
+                    yellowBasicFeedback.Stop();
+                    blueBasicFeedback.Stop();
+                    orangeBasicFeedback.Stop();
+                    YellowFeedback.SetActive(false);
+                    BlueFeedback.SetActive(false);
+                    OrangeFeedback.SetActive(false);
+
+                    //spriteRenderer.sprite = SlotManager.Instance.emptySlotSprite;
                     break;
 
                 case SlotState.PINK:
-                    spriteRenderer.sprite = SlotManager.Instance.pinkSlotSprite;
-                    
-                    if (!particleSystemRun)
+                    if (!visualeffectRun)
                     {
-                        particleSystemRun = true;
-                        pinkParticleSystem.Play();
+                        YellowFeedback.SetActive(true);
+                        yellowBasicFeedback.Play();
+                        Debug.Log("play");
+                        visualeffectRun = true;
                     }
+
+                    //spriteRenderer.sprite = SlotManager.Instance.pinkSlotSprite;
+                    //if (!particleSystemRun)
+                    //{
+                    //    particleSystemRun = true;
+                    //    pinkParticleSystem.Play();
+                    //}
                     break;
 
                 case SlotState.BLUE:
-                    spriteRenderer.sprite = SlotManager.Instance.blueSlotSprite;
-                    
-                    if (!particleSystemRun)
+                    if (!visualeffectRun)
                     {
-                        particleSystemRun = true;
-                        blueParticleSystem.Play();
+                        BlueFeedback.SetActive(true);
+                        blueBasicFeedback.Play();
+                        Debug.Log("play");
+                        visualeffectRun = true;
                     }
+                    //spriteRenderer.sprite = SlotManager.Instance.blueSlotSprite;
+
+                    //if (!particleSystemRun)
+                    //{
+                    //    particleSystemRun = true;
+                    //    blueParticleSystem.Play();
+                    //}
                     break;
 
                 case SlotState.ORANGE:
-                    spriteRenderer.sprite = SlotManager.Instance.orangeSlotSprite;
-                    
-                    if (!particleSystemRun)
+                    if (!visualeffectRun)
                     {
-                        particleSystemRun = true;
-                        orangeParticleSystem.Play();
+                        OrangeFeedback.SetActive(true);
+                        orangeBasicFeedback.Play();
+                        Debug.Log("play");
+                        visualeffectRun = true;
                     }
+                    //spriteRenderer.sprite = SlotManager.Instance.orangeSlotSprite;
+
+                    //if (!particleSystemRun)
+                    //{
+                    //    particleSystemRun = true;
+                    //    orangeParticleSystem.Play();
+                    //}
                     break;
             }
         }

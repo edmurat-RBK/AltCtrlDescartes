@@ -44,13 +44,13 @@ public class SlotManager : MonoBehaviour
     public bool[] cardDown;
 
     [Space(10)]
-
+    #region graphs
     public Sprite emptySlotSprite;
     public Sprite lockedSlotSprite;
     public Sprite pinkSlotSprite;
     public Sprite blueSlotSprite;
     public Sprite orangeSlotSprite;
-
+    #endregion
     private void Awake()
     {
         slots = new Slot[6];
