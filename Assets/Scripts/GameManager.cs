@@ -46,10 +46,20 @@ public class GameManager : MonoBehaviour
     public Text scoreDisplayCastor;
     public Text scoreDisplayPollux;
     private bool coroutineFeedback;
-    
+
+    #region Son
+    public AudioManager audioManager;
+    public AudioClip feedbackPositif;
+    public float volumePositif;
+    public AudioClip feedbackSymbol;
+    public float volumeSymbol;
+    public AudioClip feedbackSlot;
+    public float volumeSlot;
+    #endregion
 
     private void Start()
     {
+        audioManager = AudioManager.Instance;
         state = GameState.WAIT_BOTH;
         score = new SynchroScore();
         coroutineFeedback = false;
@@ -87,6 +97,7 @@ public class GameManager : MonoBehaviour
             case GameState.FEEDBACK:
                 // Compare cards
                 CardSymbol successSymbol;
+                int slotIndex;
                 if(SlotManager.Instance.CheckFullSuccess(out successSymbol))
                 {
                     ObjectiveManager.Instance.Success(successSymbol);
@@ -96,7 +107,7 @@ public class GameManager : MonoBehaviour
                 {
                     score.DecayScore();
                 }
-
+                
                 scoreDisplayCastor.text = score.score + "%";
                 scoreDisplayPollux.text = score.score + "%";
 
@@ -134,6 +145,31 @@ public class GameManager : MonoBehaviour
     IEnumerator SwitchStateFeedback()
     {
         coroutineFeedback = true;
+
+        CardSymbol successSymbol;
+        int slotIndex;
+        if (SlotManager.Instance.CheckFullSuccess(out successSymbol))
+        {
+            Debug.Log("Full Success");
+            audioManager.PlaySFX(feedbackPositif, volumePositif);
+        }
+        else
+        {
+            if (SlotManager.Instance.CheckSymbolSuccess(out successSymbol))
+            {
+                Debug.Log("Symbol Success");
+                audioManager.PlaySFX(feedbackSymbol, volumeSymbol);
+
+            }
+
+            if (SlotManager.Instance.CheckSlotSuccess(out slotIndex))
+            {
+                Debug.Log("Slot Success");
+                audioManager.PlaySFX(feedbackSlot, volumeSlot);
+
+            }
+        }
+
         yield return new WaitForSeconds(3f);
         state = GameState.FEEDBACK;
         coroutineFeedback = false;
