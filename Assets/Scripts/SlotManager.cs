@@ -192,6 +192,69 @@ public class SlotManager : MonoBehaviour
         return false;
     }
 
+    public void ReturnAll(out int slotCastor, out int slotPollux, out CardSymbol symbolCastor, out CardSymbol symbolPollux)
+    {
+        slotCastor = -1;
+        slotPollux = -1;
+        symbolCastor = CardSymbol.PINK;
+        symbolPollux = CardSymbol.PINK;
+
+        for (var i = 0; i < 3; i++)
+        {
+            if (slots[i].state != SlotState.EMPTY)
+            {
+                slotCastor = i;
+                switch (slots[i].state)
+                {
+                    case SlotState.PINK:
+                        symbolCastor = CardSymbol.PINK;
+                        break;
+
+                    case SlotState.BLUE:
+                        symbolCastor = CardSymbol.BLUE;
+                        break;
+
+                    case SlotState.ORANGE:
+                        symbolCastor = CardSymbol.ORANGE;
+                        break;
+
+                    default:
+                        throw new System.Exception();
+                }
+            }
+        }
+
+        for (var i = 3; i < 6; i++)
+        {
+            if (slots[i].state != SlotState.EMPTY)
+            {
+                slotPollux = i;
+                switch (slots[i].state)
+                {
+                    case SlotState.PINK:
+                        symbolPollux = CardSymbol.PINK;
+                        break;
+
+                    case SlotState.BLUE:
+                        symbolPollux = CardSymbol.BLUE;
+                        break;
+
+                    case SlotState.ORANGE:
+                        symbolPollux = CardSymbol.ORANGE;
+                        break;
+
+                    default:
+                        throw new System.Exception();
+                }
+            }
+        }
+
+        if(slotCastor == -1 || slotPollux == -1)
+        {
+            throw new System.Exception();
+        }
+    }
+
     public void SendFakeInput(SlotName slot, PlayerName player, CardSymbol symbol)
     {
         string send = "";
