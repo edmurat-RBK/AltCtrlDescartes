@@ -47,7 +47,13 @@ VisualEffect:
   m_ResetSeedOnPlay: 1
   m_PropertySheet:
     m_Float:
-      m_Array: []
+      m_Array:
+      - m_Value: 2
+        m_Name: Radius explosion particules
+        m_Overridden: 1
+      - m_Value: 8
+        m_Name: Scale flash
+        m_Overridden: 1
     m_Vector2f:
       m_Array: []
     m_Vector3f:
@@ -63,8 +69,17 @@ VisualEffect:
         m_Overridden: 1
     m_Vector4f:
       m_Array:
-      - m_Value: {x: 0.9911022, y: 0.50888145, z: 0.0056053917, w: 1}
+      - m_Value: {x: 0.99215686, y: 0.83866566, z: 0.0039215623, w: 1}
         m_Name: Couleur symbole
+        m_Overridden: 1
+      - m_Value: {x: 0.9911022, y: 0.83879924, z: 0.004024717, w: 1}
+        m_Name: Couleur Flash
+        m_Overridden: 1
+      - m_Value: {x: 1, y: 1, z: 1, w: 1}
+        m_Name: Couleurs particules
+        m_Overridden: 1
+      - m_Value: {x: 1, y: 1, z: 1, w: 1}
+        m_Name: Couleur rectangles
         m_Overridden: 1
     m_Uint:
       m_Array: []
