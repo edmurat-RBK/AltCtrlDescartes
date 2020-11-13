@@ -19,16 +19,18 @@ public class MenuManager : MonoBehaviour
         switch (menustate)
         {
             case MenuState.WAIT_BOTH:
-                while (SlotManager.Instance.cardDown[(int)PlayerName.CASTOR])
+                if (SlotManager.Instance.cardDown[(int)PlayerName.CASTOR])
                 {
                     menustate = MenuState.WAIT_POLLUX;
-                    //lancer le feedback d'attente une fois et le faire boucler (contour d'aura de la couleur autour de l'emplacement selectionné, le graph de base s'illumine)
+                    StartCoroutine(BackToInitialState());
+                    //lancer le feedback d'attente 
                 }
 
-                while (SlotManager.Instance.cardDown[(int)PlayerName.POLLUX])
+                else if (SlotManager.Instance.cardDown[(int)PlayerName.POLLUX])
                 {
                     menustate = MenuState.WAIT_CASTOR;
-                    // lancer le feedback d'attente et le faire boucler
+                    StartCoroutine(BackToInitialState());
+                    // lancer le feedback d'attente 
                 }
                 break;
 
@@ -47,6 +49,8 @@ public class MenuManager : MonoBehaviour
                 }
                 break;
         }
+        // Il faut que je checke les feedbacks et que je retire ceux qui ne sont pas utiles içi
+        // Il faut également que je rajoute le changement de scène après les feedbacks positifs 
         IEnumerator SwitchStateFeedback()
         {
             coroutineFeedback = true;
@@ -63,7 +67,7 @@ public class MenuManager : MonoBehaviour
                 if (SlotManager.Instance.CheckSymbolSuccess(out successSymbol))
                 {
                     Debug.Log("Symbol Success");
-                   // audioManager.PlaySFX(feedbackSymbol, volumeSymbol);
+                    // audioManager.PlaySFX(feedbackSymbol, volumeSymbol);
 
                 }
 
@@ -78,6 +82,14 @@ public class MenuManager : MonoBehaviour
             menustate = MenuState.FEEDBACK;
             coroutineFeedback = false;
         }
+        IEnumerator BackToInitialState()
+        {
+            yield return new WaitForSeconds(5);
+            if (menustate == MenuState.WAIT_CASTOR || menustate == MenuState.WAIT_POLLUX)
+            {
+                menustate = MenuState.WAIT_BOTH;
+            }
+        }
     }
-    }
+}
 }
