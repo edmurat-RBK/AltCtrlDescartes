@@ -112,7 +112,7 @@ public class SlotManager : MonoBehaviour
         }
     }
 
-    public bool CheckFullSuccess(out CardSymbol symbol)
+    public bool CheckFullSuccess(out CardSymbol symbol, out int slotIndex)
     {
         for(var i=0; i<3; i++)
         {
@@ -135,10 +135,12 @@ public class SlotManager : MonoBehaviour
                     default:
                         throw new System.Exception();
                 }
+                slotIndex = i;
                 return true;
             }
         }
         symbol = CardSymbol.PINK;
+        slotIndex = -1;
         return false;
     }
 
@@ -178,16 +180,52 @@ public class SlotManager : MonoBehaviour
         return false;
     }
 
-    public bool CheckSlotSuccess(out int slotIndex)
+    public bool CheckSlotSuccess(out int slotIndex, out CardSymbol symbolCastor, out CardSymbol symbolPollux)
     {
         for (var i = 0; i < 3; i++)
         {
             if (slots[i].state != SlotState.EMPTY && slots[i+3].state != SlotState.EMPTY)
             {
+                switch (slots[i].state)
+                {
+                    case SlotState.PINK:
+                        symbolCastor = CardSymbol.PINK;
+                        break;
+
+                    case SlotState.BLUE:
+                        symbolCastor = CardSymbol.BLUE;
+                        break;
+
+                    case SlotState.ORANGE:
+                        symbolCastor = CardSymbol.ORANGE;
+                        break;
+
+                    default:
+                        throw new System.Exception();
+                }
+                switch (slots[i].state)
+                {
+                    case SlotState.PINK:
+                        symbolPollux = CardSymbol.PINK;
+                        break;
+
+                    case SlotState.BLUE:
+                        symbolPollux = CardSymbol.BLUE;
+                        break;
+
+                    case SlotState.ORANGE:
+                        symbolPollux = CardSymbol.ORANGE;
+                        break;
+
+                    default:
+                        throw new System.Exception();
+                }
                 slotIndex = i;
                 return true;
             }
         }
+        symbolPollux = CardSymbol.PINK;
+        symbolCastor = CardSymbol.PINK;
         slotIndex = -1;
         return false;
     }

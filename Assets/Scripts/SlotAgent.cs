@@ -17,6 +17,7 @@ public class SlotAgent : MonoBehaviour
     public VisualEffect yellowBasicFeedback;
     public VisualEffect blueBasicFeedback;
     public VisualEffect orangeBasicFeedback;
+    public VisualEffect activableEffect;
     public GameObject YellowFeedback;
     public GameObject BlueFeedback;
     public GameObject OrangeFeedback;
@@ -27,8 +28,9 @@ public class SlotAgent : MonoBehaviour
 
     private void Start()
     {
- //       spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
-    }
+    activableEffect.Play();
+    //       spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+}
 
     private void Update()
     {
@@ -43,7 +45,8 @@ public class SlotAgent : MonoBehaviour
             OrangeFeedback.SetActive(false);
             if (!lockingParticleSystem.isPlaying)
             {
-                lockingParticleSystem.Play();
+                activableEffect.Stop();
+                //lockingParticleSystem.Play();
             }
 
             particleSystemRun = false;
@@ -56,7 +59,8 @@ public class SlotAgent : MonoBehaviour
                 yellowBasicFeedback.Stop();
                 blueBasicFeedback.Stop();
                 orangeBasicFeedback.Stop();
-                lockingParticleSystem.Stop();
+                //lockingParticleSystem.Stop();
+                activableEffect.Play();
                 YellowFeedback.SetActive(false);
                 BlueFeedback.SetActive(false);
                 OrangeFeedback.SetActive(false);

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Uduino;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.VFX;
 
 public class GameManager : MonoBehaviour
 {
@@ -57,6 +58,34 @@ public class GameManager : MonoBehaviour
     public float volumeSlot;
     #endregion
 
+    #region Feedbacks Graphiques
+    //positions
+    public GameObject Slot1Joueur1;
+    public GameObject Slot2Joueur1;
+    public GameObject Slot3Joueur1;
+    public GameObject Slot1Joueur2;
+    public GameObject Slot2Joueur2;
+    public GameObject Slot3Joueur2;
+    private Vector3 PositionInstanceP1;
+    private Vector3 PositionInstanceP2;
+            //effets
+
+    //effects rank1
+    public GameObject FeedbackRang1ObjectPlayer1;
+    public VisualEffect FeedbackRang1Player1;
+    public GameObject FeedbackRang1ObjectPlayer2;
+    public VisualEffect FeedbackRang1Player2;
+    //effects rank2
+    public GameObject FeedbackRang2ObjectPlayer1;
+    public VisualEffect FeedbackRang2Player1;
+    public GameObject FeedbackRang2ObjectPlayer2;
+    public VisualEffect FeedbackRang2Player2;
+    public GameObject FeedbackRang3ObjectPlayer1;
+    public VisualEffect FeedbackRang3Player1;
+    public GameObject FeedbackRang3ObjectPlayer2;
+    public VisualEffect FeedbackRang3Player2;
+    #endregion
+
     private void Start()
     {
         audioManager = AudioManager.Instance;
@@ -67,10 +96,10 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        switch(state)
+        switch (state)
         {
             case GameState.WAIT_BOTH:
-                if(SlotManager.Instance.cardDown[(int)PlayerName.CASTOR])
+                if (SlotManager.Instance.cardDown[(int)PlayerName.CASTOR])
                 {
                     state = GameState.WAIT_POLLUX;
                 }
@@ -98,7 +127,7 @@ public class GameManager : MonoBehaviour
                 // Compare cards
                 CardSymbol successSymbol;
                 int slotIndex;
-                if(SlotManager.Instance.CheckFullSuccess(out successSymbol))
+                if (SlotManager.Instance.CheckFullSuccess(out successSymbol, out slotIndex))
                 {
                     ObjectiveManager.Instance.Success(successSymbol);
                     score.IncreaseScore();
@@ -107,14 +136,14 @@ public class GameManager : MonoBehaviour
                 {
                     score.DecayScore();
                 }
-                
+
                 scoreDisplayCastor.text = score.score + "%";
                 scoreDisplayPollux.text = score.score + "%";
 
                 // Send feedback
 
 
-                if(ObjectiveManager.Instance.BothFinish())
+                if (ObjectiveManager.Instance.BothFinish())
                 {
                     state = GameState.END;
                 }
@@ -125,7 +154,7 @@ public class GameManager : MonoBehaviour
                 break;
 
             case GameState.RESET:
-                foreach(Slot s in SlotManager.Instance.slots)
+                foreach (Slot s in SlotManager.Instance.slots)
                 {
                     s.ResetToNextTurn();
                 }
@@ -147,25 +176,72 @@ public class GameManager : MonoBehaviour
         coroutineFeedback = true;
 
         CardSymbol successSymbol;
+        CardSymbol symbolCastor;
+        CardSymbol symbolPollux;
+        int slotPollux;
         int slotIndex;
-        if (SlotManager.Instance.CheckFullSuccess(out successSymbol))
+        int slotCastor;
+        if (SlotManager.Instance.CheckFullSuccess(out successSymbol, out slotIndex))
         {
+            //feedbacks de type 3: meme symbole, meme emplacement
             Debug.Log("Full Success");
             audioManager.PlaySFX(feedbackPositif, volumePositif);
+           
         }
+
         else
         {
-            if (SlotManager.Instance.CheckSymbolSuccess(out successSymbol))
-            {
-                Debug.Log("Symbol Success");
-                audioManager.PlaySFX(feedbackSymbol, volumeSymbol);
 
-            }
-
-            if (SlotManager.Instance.CheckSlotSuccess(out slotIndex))
+            if (SlotManager.Instance.CheckSlotSuccess(out slotIndex, out symbolCastor, out symbolPollux))
             {
+                //feedbacks de rang2 (pas le meme signe mais le meme emplacement)
                 Debug.Log("Slot Success");
                 audioManager.PlaySFX(feedbackSlot, volumeSlot);
+
+
+            }
+            else
+            {
+                //feedbacks de rang1 (pas le meme emplacement)
+                Debug.Log("Symbol Success");
+                audioManager.PlaySFX(feedbackSymbol, volumeSymbol);
+                SlotManager.Instance.ReturnAll(out slotCastor, out slotPollux, out symbolCastor, out symbolPollux);
+                //ci dessous on donne la position de la ou lancer les feedbacks
+                //if (slotCastor == 1)
+                //{
+                //    PositionInstanceP2 = Slot1Joueur2.transform.position;
+                //}
+                //else if (slotCastor == 2)
+                //{
+                //    PositionInstanceP2 = Slot2Joueur2.transform.position;
+                //}
+                //else if (slotCastor == 3)
+                //{
+                //    PositionInstanceP2 = Slot3Joueur2.transform.position;
+                //}
+                //if (slotPollux == 4)
+                //{
+                //    PositionInstanceP2 = Slot1Joueur2.transform.position;
+                //}
+                //else if (slotPollux == 5)
+                //{
+                //    PositionInstanceP2 = Slot2Joueur2.transform.position;
+                //}
+                //else if (slotPollux == 6)
+                //{
+                //    PositionInstanceP2 = Slot3Joueur2.transform.position;
+                //}
+                //FeedbackRang1ObjectPlayer1.transform.position = PositionInstanceP1;
+                //FeedbackRang1ObjectPlayer2.transform.position = PositionInstanceP2;
+                //on set active les objets dans lesquels les feedbacks sont
+                //FeedbackRang1ObjectPlayer1.SetActive(true);
+                //FeedbackRang1ObjectPlayer1.SetActive(true);
+                ////on change la couleur des feedbacks
+
+                ////on lance les feedbacks
+                //FeedbackRang1Player1.Play();
+                //FeedbackRang1Player2.Play();
+
 
             }
         }
