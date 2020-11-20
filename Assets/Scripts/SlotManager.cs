@@ -222,6 +222,7 @@ public class SlotManager : MonoBehaviour
                 }
                 slotIndex = i;
                 return true;
+
             }
         }
         symbolPollux = CardSymbol.PINK;
@@ -267,6 +268,7 @@ public class SlotManager : MonoBehaviour
             if (slots[i].state != SlotState.EMPTY)
             {
                 slotPollux = i;
+                Debug.Log(i);
                 switch (slots[i].state)
                 {
                     case SlotState.PINK:
