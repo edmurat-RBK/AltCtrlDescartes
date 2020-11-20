@@ -158,6 +158,12 @@ public class GameManager : MonoBehaviour
                 {
                     s.ResetToNextTurn();
                 }
+                //eteindre les feedbacks
+                    //feedbacks rang 1
+                    FeedbackRang1Player1.Stop();
+                    FeedbackRang1Player2.Stop();
+                    FeedbackRang1ObjectPlayer1.SetActive(false);
+                    FeedbackRang1ObjectPlayer2.SetActive(false);
 
                 SlotManager.Instance.cardDown[0] = false;
                 SlotManager.Instance.cardDown[1] = false;
@@ -203,44 +209,80 @@ public class GameManager : MonoBehaviour
             else
             {
                 //feedbacks de rang1 (pas le meme emplacement)
-                Debug.Log("Symbol Success");
+                Debug.Log("pas meme endroit");
+
                 audioManager.PlaySFX(feedbackSymbol, volumeSymbol);
                 SlotManager.Instance.ReturnAll(out slotCastor, out slotPollux, out symbolCastor, out symbolPollux);
-                //ci dessous on donne la position de la ou lancer les feedbacks
-                //if (slotCastor == 1)
-                //{
-                //    PositionInstanceP2 = Slot1Joueur2.transform.position;
-                //}
-                //else if (slotCastor == 2)
-                //{
-                //    PositionInstanceP2 = Slot2Joueur2.transform.position;
-                //}
-                //else if (slotCastor == 3)
-                //{
-                //    PositionInstanceP2 = Slot3Joueur2.transform.position;
-                //}
-                //if (slotPollux == 4)
-                //{
-                //    PositionInstanceP2 = Slot1Joueur2.transform.position;
-                //}
-                //else if (slotPollux == 5)
-                //{
-                //    PositionInstanceP2 = Slot2Joueur2.transform.position;
-                //}
-                //else if (slotPollux == 6)
-                //{
-                //    PositionInstanceP2 = Slot3Joueur2.transform.position;
-                //}
-                //FeedbackRang1ObjectPlayer1.transform.position = PositionInstanceP1;
-                //FeedbackRang1ObjectPlayer2.transform.position = PositionInstanceP2;
+                ////ci dessous on donne la position de la ou lancer les feedbacks
+                if (slotCastor == 1)
+                {
+                    PositionInstanceP2 = Slot1Joueur1.transform.position;
+                }
+                else if (slotCastor == 2)
+                {
+                    PositionInstanceP2 = Slot2Joueur1.transform.position;
+                }
+                else if (slotCastor == 3)
+                {
+                    PositionInstanceP2 = Slot3Joueur1.transform.position;
+                }
+                if (slotPollux == 4)
+                {
+                    PositionInstanceP2 = Slot1Joueur2.transform.position;
+                }
+                else if (slotPollux == 5)
+                {
+                    PositionInstanceP2 = Slot2Joueur2.transform.position;
+                }
+                else if (slotPollux == 6)
+                {
+                    PositionInstanceP2 = Slot3Joueur2.transform.position;
+                }
+                FeedbackRang1ObjectPlayer1.transform.position = PositionInstanceP1;
+                FeedbackRang1ObjectPlayer2.transform.position = PositionInstanceP2;
                 //on set active les objets dans lesquels les feedbacks sont
-                //FeedbackRang1ObjectPlayer1.SetActive(true);
-                //FeedbackRang1ObjectPlayer1.SetActive(true);
-                ////on change la couleur des feedbacks
+                FeedbackRang1ObjectPlayer1.SetActive(true);
+                FeedbackRang1ObjectPlayer2.SetActive(true);
+                //on change la couleur des feedbacks
+                //couleur feedback player1
+                switch (symbolCastor)
+                {
+                    case CardSymbol.PINK:
+                        FeedbackRang1Player1.SetVector4("Couleur rectangles", new Vector4(253, 214, 1, 255));
+                        break;
 
-                ////on lance les feedbacks
-                //FeedbackRang1Player1.Play();
-                //FeedbackRang1Player2.Play();
+                    case CardSymbol.BLUE:
+                        FeedbackRang1Player1.SetVector4("Couleur rectangles", new Vector4(0, 108, 220, 255));
+                        break;
+
+                    case CardSymbol.ORANGE:
+                        FeedbackRang1Player1.SetVector4("Couleur rectangles", new Vector4(191, 27, 4, 255));
+                        break;
+
+                    default:
+                        throw new System.Exception();
+                }
+                //couleur feedback player2
+                switch (symbolPollux)
+                {
+                    case CardSymbol.PINK:
+                        FeedbackRang1Player2.SetVector4("Couleur rectangles", new Vector4(253, 214, 1, 255));
+                        break;
+
+                    case CardSymbol.BLUE:
+                        FeedbackRang1Player2.SetVector4("Couleur rectangles", new Vector4(0, 108, 220, 255));
+                        break;
+
+                    case CardSymbol.ORANGE:
+                        FeedbackRang1Player2.SetVector4("Couleur rectangles", new Vector4(191, 27, 4, 255));
+                        break;
+
+                    default:
+                        throw new System.Exception();
+                }
+                //on lance les feedbacks
+                FeedbackRang1Player1.Play();
+                FeedbackRang1Player2.Play();
 
 
             }

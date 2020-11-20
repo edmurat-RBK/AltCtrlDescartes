@@ -22,30 +22,33 @@ public class SlotAgent : MonoBehaviour
     public GameObject BlueFeedback;
     public GameObject OrangeFeedback;
     private bool visualeffectRun;
+    private bool islocked = false;
 
 
     private bool particleSystemRun = false;
 
     private void Start()
     {
-    activableEffect.Play();
-    //       spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
-}
+        activableEffect.Play();
+        //       spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+    }
 
     private void Update()
     {
         if(SlotManager.Instance.slots[index].locked)
         {
-          //  spriteRenderer.sprite = SlotManager.Instance.lockedSlotSprite;
+            //  spriteRenderer.sprite = SlotManager.Instance.lockedSlotSprite;
+
             yellowBasicFeedback.Stop();
             blueBasicFeedback.Stop();
             orangeBasicFeedback.Stop();
             YellowFeedback.SetActive(false);
             BlueFeedback.SetActive(false);
             OrangeFeedback.SetActive(false);
-            if (!lockingParticleSystem.isPlaying)
+            if (islocked==false)
             {
                 activableEffect.Stop();
+                islocked = true;
                 //lockingParticleSystem.Play();
             }
 
@@ -53,17 +56,11 @@ public class SlotAgent : MonoBehaviour
         }
         else
         {
-
-            if (lockingParticleSystem.isPlaying)
+            
+            if (islocked==true)
             {
-                yellowBasicFeedback.Stop();
-                blueBasicFeedback.Stop();
-                orangeBasicFeedback.Stop();
-                //lockingParticleSystem.Stop();
                 activableEffect.Play();
-                YellowFeedback.SetActive(false);
-                BlueFeedback.SetActive(false);
-                OrangeFeedback.SetActive(false);
+                islocked = false;
             }
 
             switch (SlotManager.Instance.slots[index].state)
@@ -72,6 +69,7 @@ public class SlotAgent : MonoBehaviour
                     yellowBasicFeedback.Stop();
                     blueBasicFeedback.Stop();
                     orangeBasicFeedback.Stop();
+                    
                     YellowFeedback.SetActive(false);
                     BlueFeedback.SetActive(false);
                     OrangeFeedback.SetActive(false);
