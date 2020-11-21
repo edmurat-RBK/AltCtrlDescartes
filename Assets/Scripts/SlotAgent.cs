@@ -39,12 +39,17 @@ public class SlotAgent : MonoBehaviour
         {
             //  spriteRenderer.sprite = SlotManager.Instance.lockedSlotSprite;
 
+            yellowBasicFeedback.Reinit();
+            blueBasicFeedback.Reinit();
+            orangeBasicFeedback.Reinit();
+
             yellowBasicFeedback.Stop();
             blueBasicFeedback.Stop();
             orangeBasicFeedback.Stop();
-            YellowFeedback.SetActive(false);
-            BlueFeedback.SetActive(false);
-            OrangeFeedback.SetActive(false);
+            visualeffectRun = false;
+            //YellowFeedback.SetActive(false);
+            //BlueFeedback.SetActive(false);
+            //OrangeFeedback.SetActive(false);
             if (islocked==false)
             {
                 activableEffect.Stop();
@@ -66,13 +71,19 @@ public class SlotAgent : MonoBehaviour
             switch (SlotManager.Instance.slots[index].state)
             {
                 case SlotState.EMPTY:
+                    yellowBasicFeedback.Reinit();
+                    blueBasicFeedback.Reinit();
+                    orangeBasicFeedback.Reinit();
+                    
                     yellowBasicFeedback.Stop();
                     blueBasicFeedback.Stop();
                     orangeBasicFeedback.Stop();
-                    
-                    YellowFeedback.SetActive(false);
-                    BlueFeedback.SetActive(false);
-                    OrangeFeedback.SetActive(false);
+                    visualeffectRun = false;
+
+
+                    //YellowFeedback.SetActive(false);
+                    //BlueFeedback.SetActive(false);
+                    //OrangeFeedback.SetActive(false);
 
                     //spriteRenderer.sprite = SlotManager.Instance.emptySlotSprite;
                     break;
