@@ -922,11 +922,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1243944069389183201, guid: 21d1830ff85f69a478adb11ffe3ffa24, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.27
       objectReference: {fileID: 0}
     - target: {fileID: 1243944069389183201, guid: 21d1830ff85f69a478adb11ffe3ffa24, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -10.84
       objectReference: {fileID: 0}
     - target: {fileID: 1243944069389183201, guid: 21d1830ff85f69a478adb11ffe3ffa24, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5473,6 +5473,9 @@ MonoBehaviour:
   Slot1Joueur2: {fileID: 483389466}
   Slot2Joueur2: {fileID: 441378517}
   Slot3Joueur2: {fileID: 1233072120}
+  bleu: {x: 0, y: 0.42352942, z: 0.8627451, w: 1}
+  jaune: {x: 0.99215686, y: 0.8392157, z: 0.003921569, w: 1}
+  orange: {x: 0.7490196, y: 0.105882354, z: 0.015686275, w: 1}
   FeedbackRang1ObjectPlayer1: {fileID: 170636081}
   FeedbackRang1Player1: {fileID: 170636082}
   FeedbackRang1ObjectPlayer2: {fileID: 1497066156}
@@ -5908,11 +5911,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1243944069389183201, guid: 21d1830ff85f69a478adb11ffe3ffa24, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.27
       objectReference: {fileID: 0}
     - target: {fileID: 1243944069389183201, guid: 21d1830ff85f69a478adb11ffe3ffa24, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -10.84
       objectReference: {fileID: 0}
     - target: {fileID: 1243944069389183201, guid: 21d1830ff85f69a478adb11ffe3ffa24, type: 3}
       propertyPath: m_LocalPosition.z

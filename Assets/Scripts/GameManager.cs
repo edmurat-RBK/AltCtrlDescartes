@@ -68,7 +68,15 @@ public class GameManager : MonoBehaviour
     public GameObject Slot3Joueur2;
     private Vector3 PositionInstanceP1;
     private Vector3 PositionInstanceP2;
-            //effets
+    //effets
+
+    //couleurs
+    [SerializeField]
+    private Vector4 bleu = new Vector4(0, 108, 220, 255);
+    [SerializeField]
+    private Vector4 jaune = new Vector4(253, 214, 1, 255);
+    [SerializeField]
+    private Vector4 orange = new Vector4(191, 27, 4, 255);
 
     //effects rank1
     public GameObject FeedbackRang1ObjectPlayer1;
@@ -249,15 +257,15 @@ public class GameManager : MonoBehaviour
                 switch (symbolCastor)
                 {
                     case CardSymbol.PINK:
-                        FeedbackRang1Player2.SetVector4("Couleur rectangles", new Vector4(253, 214, 1, 255));
+                        FeedbackRang1Player2.SetVector4("Couleur rectangles", jaune);
                         break;
 
                     case CardSymbol.BLUE:
-                        FeedbackRang1Player2.SetVector4("Couleur rectangles", new Vector4(0, 108, 220, 255));
+                        FeedbackRang1Player2.SetVector4("Couleur rectangles", bleu);
                         break;
 
                     case CardSymbol.ORANGE:
-                        FeedbackRang1Player2.SetVector4("Couleur rectangles", new Vector4(191, 27, 4, 255));
+                        FeedbackRang1Player2.SetVector4("Couleur rectangles", orange);
                         break;
 
                     default:
@@ -269,19 +277,19 @@ public class GameManager : MonoBehaviour
                     
                     case CardSymbol.PINK:
                         Debug.Log(symbolPollux);
-                        FeedbackRang1Player1.SetVector4("Couleur rectangles", new Vector4(253, 214, 1, 255));
+                        FeedbackRang1Player1.SetVector4("Couleur rectangles", jaune);
                         Debug.Log("colorchange");
                         break;
 
                     case CardSymbol.BLUE:
-                        Debug.Log(symbolPollux);
-                        FeedbackRang1Player1.SetVector4("Couleur rectangles", new Vector4(0, 108, 220, 255));
-                        Debug.Log("colorchange");
+                        Debug.Log("blue");
+                        FeedbackRang1Player1.SetVector4("Couleur rectangles", bleu);
+                        Debug.Log("colorchangeblue");
                         break;
 
                     case CardSymbol.ORANGE:
                         Debug.Log(symbolPollux);
-                        FeedbackRang1Player1.SetVector4("Couleur rectangles", new Vector4(191, 27, 4, 255));
+                        FeedbackRang1Player1.SetVector4("Couleur rectangles", orange);
                         Debug.Log("colorchange");
                         break;
 
