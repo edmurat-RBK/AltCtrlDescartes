@@ -203,7 +203,7 @@ public class SlotManager : MonoBehaviour
                     default:
                         throw new System.Exception();
                 }
-                switch (slots[i].state)
+                switch (slots[i+3].state)
                 {
                     case SlotState.PINK:
                         symbolPollux = CardSymbol.PINK;
