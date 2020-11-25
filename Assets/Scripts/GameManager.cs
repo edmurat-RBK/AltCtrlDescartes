@@ -84,14 +84,36 @@ public class GameManager : MonoBehaviour
     public GameObject FeedbackRang1ObjectPlayer2;
     public VisualEffect FeedbackRang1Player2;
     //effects rank2
-    public GameObject FeedbackRang2ObjectPlayer1;
-    public VisualEffect FeedbackRang2Player1;
-    public GameObject FeedbackRang2ObjectPlayer2;
-    public VisualEffect FeedbackRang2Player2;
-    public GameObject FeedbackRang3ObjectPlayer1;
-    public VisualEffect FeedbackRang3Player1;
-    public GameObject FeedbackRang3ObjectPlayer2;
-    public VisualEffect FeedbackRang3Player2;
+        //player 1
+    public GameObject FeedbackRang2ObjectPlayer1Blue;
+    public VisualEffect FeedbackRang2Player1Blue;
+    public GameObject FeedbackRang2ObjectPlayer1Yellow;
+    public VisualEffect FeedbackRang2Player1Yellow;
+    public GameObject FeedbackRang2ObjectPlayer1Orange;
+    public VisualEffect FeedbackRang2Player1Orange;
+        //player 2
+    public GameObject FeedbackRang2ObjectPlayer2Blue;
+    public VisualEffect FeedbackRang2Player2Blue;
+    public GameObject FeedbackRang2ObjectPlayer2Yellow;
+    public VisualEffect FeedbackRang2Player2Yellow;
+    public GameObject FeedbackRang2ObjectPlayer2Orange;
+    public VisualEffect FeedbackRang2Player2Orange;
+    //effects rank3
+        //Player1
+    public GameObject FeedbackRang3ObjectPlayer1Blue;
+    public VisualEffect FeedbackRang3Player1Blue;
+    public GameObject FeedbackRang3ObjectPlayer1Yellow;
+    public VisualEffect FeedbackRang3Player1Yellow;
+    public GameObject FeedbackRang3ObjectPlayer1Orange;
+    public VisualEffect FeedbackRang3Player1Orange;
+    //Player2
+    public GameObject FeedbackRang3ObjectPlayer2Blue;
+    public VisualEffect FeedbackRang3Player2Blue;
+    public GameObject FeedbackRang3ObjectPlayer2Yellow;
+    public VisualEffect FeedbackRang3Player2Yellow;
+    public GameObject FeedbackRang3ObjectPlayer2Orange;
+    public VisualEffect FeedbackRang3Player2Orange;
+
     #endregion
 
     private void Start()
@@ -167,11 +189,37 @@ public class GameManager : MonoBehaviour
                     s.ResetToNextTurn();
                 }
                 //eteindre les feedbacks
-                    //feedbacks rang 1
+                        //feedbacks rang 1
                     FeedbackRang1Player1.Stop();
                     FeedbackRang1Player2.Stop();
                     FeedbackRang1ObjectPlayer1.SetActive(false);
                     FeedbackRang1ObjectPlayer2.SetActive(false);
+                        //feedbacks rang 2
+                    FeedbackRang2Player1Blue.Stop();
+                    FeedbackRang2Player2Blue.Stop();
+                    FeedbackRang2Player1Yellow.Stop();
+                    FeedbackRang2Player2Yellow.Stop();
+                    FeedbackRang2Player1Orange.Stop();
+                    FeedbackRang2Player2Orange.Stop();
+                    FeedbackRang2ObjectPlayer1Blue.SetActive(false);
+                    FeedbackRang2ObjectPlayer2Blue.SetActive(false);
+                    FeedbackRang2ObjectPlayer1Yellow.SetActive(false);
+                    FeedbackRang2ObjectPlayer2Yellow.SetActive(false);
+                    FeedbackRang2ObjectPlayer1Orange.SetActive(false);
+                    FeedbackRang2ObjectPlayer2Orange.SetActive(false);
+                    //feedbacks rang 3
+                        FeedbackRang3Player1Blue.Stop();
+                        FeedbackRang3Player2Blue.Stop();
+                        FeedbackRang3Player1Yellow.Stop();
+                        FeedbackRang3Player2Yellow.Stop();
+                        FeedbackRang3Player1Orange.Stop();
+                        FeedbackRang3Player2Orange.Stop();
+                        FeedbackRang3ObjectPlayer1Blue.SetActive(false);
+                        FeedbackRang3ObjectPlayer2Blue.SetActive(false);
+                        FeedbackRang3ObjectPlayer1Yellow.SetActive(false);
+                        FeedbackRang3ObjectPlayer2Yellow.SetActive(false);
+                        FeedbackRang3ObjectPlayer1Orange.SetActive(false);
+                        FeedbackRang3ObjectPlayer2Orange.SetActive(false);
 
                 SlotManager.Instance.cardDown[0] = false;
                 SlotManager.Instance.cardDown[1] = false;
@@ -200,7 +248,59 @@ public class GameManager : MonoBehaviour
             //feedbacks de type 3: meme symbole, meme emplacement
             Debug.Log("Full Success");
             audioManager.PlaySFX(feedbackPositif, volumePositif);
-           
+            if (slotIndex == 0)
+            {
+                PositionInstanceP1 = Slot1Joueur1.transform.position;
+                PositionInstanceP2 = Slot1Joueur2.transform.position;
+            }
+            if (slotIndex == 1)
+            {
+                PositionInstanceP1 = Slot2Joueur1.transform.position;
+                PositionInstanceP2 = Slot2Joueur2.transform.position;
+            }
+            if (slotIndex == 2)
+            {
+                PositionInstanceP1 = Slot3Joueur1.transform.position;
+                PositionInstanceP2 = Slot3Joueur2.transform.position;
+            }
+            //on set la posiion des feedbacks
+                FeedbackRang3ObjectPlayer1Blue.transform.position = PositionInstanceP1;
+                FeedbackRang3ObjectPlayer2Blue.transform.position = PositionInstanceP2;
+                FeedbackRang3ObjectPlayer1Yellow.transform.position = PositionInstanceP1;
+                FeedbackRang3ObjectPlayer2Yellow.transform.position = PositionInstanceP2;
+                FeedbackRang3ObjectPlayer1Orange.transform.position = PositionInstanceP1;
+                FeedbackRang3ObjectPlayer2Orange.transform.position = PositionInstanceP2;
+
+            //on joue les feedbacks selon la couleur
+            switch (successSymbol)
+            {
+                case CardSymbol.PINK:
+                    FeedbackRang3ObjectPlayer1Yellow.SetActive(true);
+                    FeedbackRang3ObjectPlayer2Yellow.SetActive(true);
+                    FeedbackRang3Player1Yellow.Play();
+                    FeedbackRang3Player2Yellow.Play();
+                    break;
+
+                case CardSymbol.BLUE:
+                    FeedbackRang3ObjectPlayer1Blue.SetActive(true);
+                    FeedbackRang3ObjectPlayer2Blue.SetActive(true);
+                    FeedbackRang3Player1Blue.Play();
+                    FeedbackRang3Player2Blue.Play();
+                    break;
+
+                case CardSymbol.ORANGE:
+                    FeedbackRang3ObjectPlayer1Orange.SetActive(true);
+                    FeedbackRang3ObjectPlayer2Orange.SetActive(true);
+                    FeedbackRang3Player1Orange.Play();
+                    FeedbackRang3Player2Orange.Play();
+                    break;
+
+                default:
+                    throw new System.Exception();
+            }
+
+
+
         }
 
         else
@@ -211,7 +311,178 @@ public class GameManager : MonoBehaviour
                 //feedbacks de rang2 (pas le meme signe mais le meme emplacement)
                 Debug.Log("Slot Success");
                 audioManager.PlaySFX(feedbackSlot, volumeSlot);
+                //on modifie les positions des feedbacks
+                if (slotIndex == 0)
+                {
+                    PositionInstanceP1 = Slot1Joueur1.transform.position;
+                    PositionInstanceP2 = Slot1Joueur2.transform.position;
+                }
+                if (slotIndex == 1)
+                {
+                    PositionInstanceP1 = Slot2Joueur1.transform.position;
+                    PositionInstanceP2 = Slot2Joueur2.transform.position;
+                }
+                if (slotIndex == 2)
+                {
+                    PositionInstanceP1 = Slot3Joueur1.transform.position;
+                    PositionInstanceP2 = Slot3Joueur2.transform.position;
+                }
+                //on set la posiion des feedbacks
+                FeedbackRang2ObjectPlayer1Blue.transform.position = PositionInstanceP1;
+                FeedbackRang2ObjectPlayer2Blue.transform.position = PositionInstanceP2;
+                FeedbackRang2ObjectPlayer1Yellow.transform.position = PositionInstanceP1;
+                FeedbackRang2ObjectPlayer2Yellow.transform.position = PositionInstanceP2;
+                FeedbackRang2ObjectPlayer1Orange.transform.position = PositionInstanceP1;
+                FeedbackRang2ObjectPlayer2Orange.transform.position = PositionInstanceP2;
+                
 
+
+                
+
+                //on set active les objets dans lesquels les feedbacks sont et on change la couleur selon le cas et on déplace les game objects
+                switch (symbolCastor)
+                {
+                    case CardSymbol.PINK:
+                        FeedbackRang2ObjectPlayer2Yellow.SetActive(true);
+                            switch (symbolPollux)
+                            {
+                                case CardSymbol.BLUE:
+                                    Debug.Log("blue");
+                                    FeedbackRang2Player1Yellow.SetVector4("Couleur rectangles", bleu);
+                                    Debug.Log("colorchangeblue");
+                                    break;
+
+                                case CardSymbol.ORANGE:
+                                    Debug.Log(symbolPollux);
+                                    FeedbackRang2Player1Yellow.SetVector4("Couleur rectangles", orange);
+                                    Debug.Log("colorchangeorange");
+                                    break;
+
+                                default:
+                                    throw new System.Exception();
+                            }
+                        FeedbackRang2Player1Yellow.Play();
+                        break;
+
+                    case CardSymbol.BLUE:
+                        FeedbackRang2ObjectPlayer2Blue.SetActive(true);
+                            switch (symbolPollux)
+                            {
+                                case CardSymbol.PINK:
+                                    Debug.Log("yellow");
+                                    FeedbackRang2Player1Blue.SetVector4("Couleur rectangles", jaune);
+                                    Debug.Log("colorchangeyellow");
+                                    break;
+
+                                case CardSymbol.ORANGE:
+                                    Debug.Log(symbolPollux);
+                                    FeedbackRang2Player1Blue.SetVector4("Couleur rectangles", orange);
+                                    Debug.Log("colorchangeorange");
+                                    break;
+
+                                default:
+                                    throw new System.Exception();
+                            }
+                        FeedbackRang2Player1Blue.Play();
+                        break;
+
+                    case CardSymbol.ORANGE:
+                        FeedbackRang2ObjectPlayer2Orange.SetActive(true);
+                            switch (symbolPollux)
+                            {
+                                case CardSymbol.PINK:
+                                    Debug.Log("yellow");
+                                    FeedbackRang2Player1Orange.SetVector4("Couleur rectangles", jaune);
+                                    Debug.Log("colorchangeyellow");
+                                    break;
+
+                                case CardSymbol.BLUE:
+                                    Debug.Log(symbolPollux);
+                                    FeedbackRang2Player1Orange.SetVector4("Couleur rectangles", bleu);
+                                    Debug.Log("colorchangeblue");
+                                    break;
+
+                                default:
+                                    throw new System.Exception();
+                            }
+                        FeedbackRang2Player1Orange.Play();
+                        break;
+
+                    default:
+                        throw new System.Exception();
+                }
+                switch (symbolPollux)
+                {
+
+                    case CardSymbol.PINK:
+                        FeedbackRang2ObjectPlayer1Yellow.SetActive(true);
+                            switch (symbolCastor)
+                            {
+                                case CardSymbol.BLUE:
+                                    Debug.Log("blue");
+                                    FeedbackRang2Player1Yellow.SetVector4("Couleur rectangles", bleu);
+                                    Debug.Log("colorchangeblue");
+                                    break;
+
+                                case CardSymbol.ORANGE:
+                                    Debug.Log(symbolCastor);
+                                    FeedbackRang2Player1Yellow.SetVector4("Couleur rectangles", orange);
+                                    Debug.Log("colorchangeorange");
+                                    break;
+
+                                default:
+                                    throw new System.Exception();
+                            }
+                        FeedbackRang2Player2Yellow.Play();
+                        break;
+
+                    case CardSymbol.BLUE:
+                        FeedbackRang2ObjectPlayer1Blue.SetActive(true);
+                            switch (symbolCastor)
+                                {
+                                    case CardSymbol.PINK:
+                                        Debug.Log("jaune");
+                                        FeedbackRang2Player1Blue.SetVector4("Couleur rectangles", jaune);
+                                        Debug.Log("colorchangejaune");
+                                        break;
+
+                                    case CardSymbol.ORANGE:
+                                        Debug.Log(symbolCastor);
+                                        FeedbackRang2Player1Blue.SetVector4("Couleur rectangles", orange);
+                                        Debug.Log("colorchangeorange");
+                                        break;
+
+                                    default:
+                                        throw new System.Exception();
+                                }
+                        FeedbackRang2Player2Blue.Play();
+                        break;
+
+                    case CardSymbol.ORANGE:
+                        FeedbackRang2ObjectPlayer1Orange.SetActive(true);
+                            switch (symbolCastor)
+                                {
+                                    case CardSymbol.PINK:
+                                        Debug.Log("jaune");
+                                        FeedbackRang2Player1Orange.SetVector4("Couleur rectangles", jaune);
+                                        Debug.Log("colorchangej");
+                                        break;
+
+                                    case CardSymbol.BLUE:
+                                        Debug.Log(symbolCastor);
+                                        FeedbackRang2Player1Orange.SetVector4("Couleur rectangles", bleu);
+                                        Debug.Log("colorchangebleu");
+                                        break;
+
+                                    default:
+                                        throw new System.Exception();
+                                }
+                        FeedbackRang2Player2Orange.Play();
+                        break;
+
+                    default:
+                        throw new System.Exception();
+                }
 
             }
             else
@@ -308,4 +579,5 @@ public class GameManager : MonoBehaviour
         state = GameState.FEEDBACK;
         coroutineFeedback = false;
     }
+
 }
