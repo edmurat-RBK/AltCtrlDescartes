@@ -129,6 +129,7 @@ public class GameManager : MonoBehaviour
         state = GameState.WAIT_BOTH;
         score = new SynchroScore();
         coroutineFeedback = false;
+        DisableAllFeedbacks();
     }
 
     private void Update()
@@ -298,37 +299,7 @@ public class GameManager : MonoBehaviour
                     s.ResetToNextTurn(isStartRound);
                 }
                 //eteindre les feedbacks
-                //feedbacks rang 1
-                FeedbackRang1Player1.Stop();
-                    FeedbackRang1Player2.Stop();
-                    FeedbackRang1ObjectPlayer1.SetActive(false);
-                    FeedbackRang1ObjectPlayer2.SetActive(false);
-                        //feedbacks rang 2
-                    FeedbackRang2Player1Blue.Stop();
-                    FeedbackRang2Player2Blue.Stop();
-                    FeedbackRang2Player1Yellow.Stop();
-                    FeedbackRang2Player2Yellow.Stop();
-                    FeedbackRang2Player1Orange.Stop();
-                    FeedbackRang2Player2Orange.Stop();
-                    FeedbackRang2ObjectPlayer1Blue.SetActive(false);
-                    FeedbackRang2ObjectPlayer2Blue.SetActive(false);
-                    FeedbackRang2ObjectPlayer1Yellow.SetActive(false);
-                    FeedbackRang2ObjectPlayer2Yellow.SetActive(false);
-                    FeedbackRang2ObjectPlayer1Orange.SetActive(false);
-                    FeedbackRang2ObjectPlayer2Orange.SetActive(false);
-                    //feedbacks rang 3
-                        FeedbackRang3Player1Blue.Stop();
-                        FeedbackRang3Player2Blue.Stop();
-                        FeedbackRang3Player1Yellow.Stop();
-                        FeedbackRang3Player2Yellow.Stop();
-                        FeedbackRang3Player1Orange.Stop();
-                        FeedbackRang3Player2Orange.Stop();
-                        FeedbackRang3ObjectPlayer1Blue.SetActive(false);
-                        FeedbackRang3ObjectPlayer2Blue.SetActive(false);
-                        FeedbackRang3ObjectPlayer1Yellow.SetActive(false);
-                        FeedbackRang3ObjectPlayer2Yellow.SetActive(false);
-                        FeedbackRang3ObjectPlayer1Orange.SetActive(false);
-                        FeedbackRang3ObjectPlayer2Orange.SetActive(false);
+                DisableAllFeedbacks();
 
                 SlotManager.Instance.cardDown[0] = false;
                 SlotManager.Instance.cardDown[1] = false;
@@ -427,7 +398,7 @@ public class GameManager : MonoBehaviour
             if (SlotManager.Instance.CheckSlotSuccess(out slotIndex, out symbolCastor, out symbolPollux))
             {
                 //feedbacks de rang2 (pas le meme signe mais le meme emplacement)
-                Debug.Log("Slot Success");
+                Debug.Log("Slot Success on " + slotIndex);
                 audioManager.PlaySFX(feedbackSlot, volumeSlot);
                 //on modifie les positions des feedbacks
                 if (slotIndex == 0)
@@ -452,13 +423,51 @@ public class GameManager : MonoBehaviour
                 FeedbackRang2ObjectPlayer2Yellow.transform.position = PositionInstanceP2;
                 FeedbackRang2ObjectPlayer1Orange.transform.position = PositionInstanceP1;
                 FeedbackRang2ObjectPlayer2Orange.transform.position = PositionInstanceP2;
-                
 
+                switch (symbolCastor)
+                {
+                    case CardSymbol.PINK:
+                        FeedbackRang2ObjectPlayer2Yellow.SetActive(true);
+                        FeedbackRang2Player2Yellow.SetVector4("Couleur rectangles", jaune);
+                        FeedbackRang2Player2Yellow.Play();
+                        break;
 
-                
+                    case CardSymbol.ORANGE:
+                        FeedbackRang2ObjectPlayer2Orange.SetActive(true);
+                        FeedbackRang2Player2Orange.SetVector4("Couleur rectangles", orange);
+                        FeedbackRang2Player2Orange.Play();
+                        break;
+
+                    case CardSymbol.BLUE:
+                        FeedbackRang2ObjectPlayer2Blue.SetActive(true);
+                        FeedbackRang2Player2Blue.SetVector4("Couleur rectangles", bleu);
+                        FeedbackRang2Player2Blue.Play();
+                        break;
+                }
+
+                switch (symbolPollux)
+                {
+                    case CardSymbol.PINK:
+                        FeedbackRang2ObjectPlayer1Yellow.SetActive(true);
+                        FeedbackRang2Player1Yellow.SetVector4("Couleur rectangles", jaune);
+                        FeedbackRang2Player1Yellow.Play();
+                        break;
+
+                    case CardSymbol.ORANGE:
+                        FeedbackRang2ObjectPlayer1Orange.SetActive(true);
+                        FeedbackRang2Player1Orange.SetVector4("Couleur rectangles", orange);
+                        FeedbackRang2Player1Orange.Play();
+                        break;
+
+                    case CardSymbol.BLUE:
+                        FeedbackRang2ObjectPlayer1Blue.SetActive(true);
+                        FeedbackRang2Player1Blue.SetVector4("Couleur rectangles", bleu);
+                        FeedbackRang2Player1Blue.Play();
+                        break;
+                }
 
                 //on set active les objets dans lesquels les feedbacks sont et on change la couleur selon le cas et on déplace les game objects
-                switch (symbolCastor)
+                /*switch (symbolCastor)
                 {
                     case CardSymbol.PINK:
                         FeedbackRang2ObjectPlayer2Yellow.SetActive(true);
@@ -601,7 +610,7 @@ public class GameManager : MonoBehaviour
                     default:
                         throw new System.Exception();
                 }
-
+                */
             }
             else
             {
@@ -716,6 +725,41 @@ public class GameManager : MonoBehaviour
                 Invoke("Quit", timeBeforeExecuteButton);
                 break;
         }
+    }
+
+    private void DisableAllFeedbacks()
+    {
+        //feedbacks rang 1
+        FeedbackRang1Player1.Stop();
+        FeedbackRang1Player2.Stop();
+        FeedbackRang1ObjectPlayer1.SetActive(false);
+        FeedbackRang1ObjectPlayer2.SetActive(false);
+        //feedbacks rang 2
+        FeedbackRang2Player1Blue.Stop();
+        FeedbackRang2Player2Blue.Stop();
+        FeedbackRang2Player1Yellow.Stop();
+        FeedbackRang2Player2Yellow.Stop();
+        FeedbackRang2Player1Orange.Stop();
+        FeedbackRang2Player2Orange.Stop();
+        FeedbackRang2ObjectPlayer1Blue.SetActive(false);
+        FeedbackRang2ObjectPlayer2Blue.SetActive(false);
+        FeedbackRang2ObjectPlayer1Yellow.SetActive(false);
+        FeedbackRang2ObjectPlayer2Yellow.SetActive(false);
+        FeedbackRang2ObjectPlayer1Orange.SetActive(false);
+        FeedbackRang2ObjectPlayer2Orange.SetActive(false);
+        //feedbacks rang 3
+        FeedbackRang3Player1Blue.Stop();
+        FeedbackRang3Player2Blue.Stop();
+        FeedbackRang3Player1Yellow.Stop();
+        FeedbackRang3Player2Yellow.Stop();
+        FeedbackRang3Player1Orange.Stop();
+        FeedbackRang3Player2Orange.Stop();
+        FeedbackRang3ObjectPlayer1Blue.SetActive(false);
+        FeedbackRang3ObjectPlayer2Blue.SetActive(false);
+        FeedbackRang3ObjectPlayer1Yellow.SetActive(false);
+        FeedbackRang3ObjectPlayer2Yellow.SetActive(false);
+        FeedbackRang3ObjectPlayer1Orange.SetActive(false);
+        FeedbackRang3ObjectPlayer2Orange.SetActive(false);
     }
 
     private void StartGame()

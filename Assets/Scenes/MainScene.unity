@@ -3614,6 +3614,14 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[8]
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 4037144541561153736, guid: 483baafd9039e6e40b9d0fd5e6f3b5ad, type: 3}
+      propertyPath: m_PropertySheet.m_NamedObject.m_Array.Array.data[0].m_Value
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4037144541561153736, guid: 483baafd9039e6e40b9d0fd5e6f3b5ad, type: 3}
+      propertyPath: m_PropertySheet.m_NamedObject.m_Array.Array.data[0].m_Overridden
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5527840982804073168, guid: 483baafd9039e6e40b9d0fd5e6f3b5ad, type: 3}
       propertyPath: m_Name
       value: Feedback 2 j2Jaune
@@ -5232,6 +5240,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Feedback 2 j1 Bleu
       objectReference: {fileID: 0}
+    - target: {fileID: 5002869942493631718, guid: 24e331f89f484c64ea119a74aedc5fdd, type: 3}
+      propertyPath: m_PropertySheet.m_NamedObject.m_Array.Array.data[0].m_Value
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5002869942493631718, guid: 24e331f89f484c64ea119a74aedc5fdd, type: 3}
+      propertyPath: m_PropertySheet.m_NamedObject.m_Array.Array.data[0].m_Overridden
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5602871762223972562, guid: 24e331f89f484c64ea119a74aedc5fdd, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.04
@@ -6171,6 +6187,14 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[8]
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 4037144541561153736, guid: 483baafd9039e6e40b9d0fd5e6f3b5ad, type: 3}
+      propertyPath: m_PropertySheet.m_NamedObject.m_Array.Array.data[0].m_Overridden
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4037144541561153736, guid: 483baafd9039e6e40b9d0fd5e6f3b5ad, type: 3}
+      propertyPath: m_PropertySheet.m_NamedObject.m_Array.Array.data[0].m_Value
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5527840982804073168, guid: 483baafd9039e6e40b9d0fd5e6f3b5ad, type: 3}
       propertyPath: m_Name
       value: Feedback 2 j1 Jaune
@@ -6448,6 +6472,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7957618926077888332, guid: 8c72828ab00b9604bbe2f8a37d20f13f, type: 3}
+      propertyPath: m_PropertySheet.m_NamedObject.m_Array.Array.data[0].m_Overridden
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7957618926077888332, guid: 8c72828ab00b9604bbe2f8a37d20f13f, type: 3}
+      propertyPath: m_PropertySheet.m_NamedObject.m_Array.Array.data[0].m_Value
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8c72828ab00b9604bbe2f8a37d20f13f, type: 3}
 --- !u!4 &1377007839 stripped
@@ -6511,6 +6543,9 @@ MonoBehaviour:
   state: 0
   scoreDisplayCastor: {fileID: 1669016586}
   scoreDisplayPollux: {fileID: 3291769}
+  isStartRound: 0
+  menuButtons: 000000000000000000000000
+  timeBeforeExecuteButton: 0
   audioManager: {fileID: 0}
   feedbackPositif: {fileID: 8300000, guid: 2e070fc26ac58b740b94bf9af497c0ad, type: 3}
   volumePositif: 1
@@ -7316,6 +7351,14 @@ PrefabInstance:
     - target: {fileID: 1755583270074616788, guid: 24e331f89f484c64ea119a74aedc5fdd, type: 3}
       propertyPath: m_Name
       value: Feedback 2 j2 Bleu
+      objectReference: {fileID: 0}
+    - target: {fileID: 5002869942493631718, guid: 24e331f89f484c64ea119a74aedc5fdd, type: 3}
+      propertyPath: m_PropertySheet.m_NamedObject.m_Array.Array.data[0].m_Overridden
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5002869942493631718, guid: 24e331f89f484c64ea119a74aedc5fdd, type: 3}
+      propertyPath: m_PropertySheet.m_NamedObject.m_Array.Array.data[0].m_Value
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5602871762223972562, guid: 24e331f89f484c64ea119a74aedc5fdd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8688,11 +8731,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7107875211039709802, guid: 8c72828ab00b9604bbe2f8a37d20f13f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.08
+      value: 7.9
       objectReference: {fileID: 0}
     - target: {fileID: 7107875211039709802, guid: 8c72828ab00b9604bbe2f8a37d20f13f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -18.35
+      value: -16.43
       objectReference: {fileID: 0}
     - target: {fileID: 7107875211039709802, guid: 8c72828ab00b9604bbe2f8a37d20f13f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -8729,6 +8772,14 @@ PrefabInstance:
     - target: {fileID: 7107875211039709802, guid: 8c72828ab00b9604bbe2f8a37d20f13f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7957618926077888332, guid: 8c72828ab00b9604bbe2f8a37d20f13f, type: 3}
+      propertyPath: m_PropertySheet.m_NamedObject.m_Array.Array.data[0].m_Overridden
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7957618926077888332, guid: 8c72828ab00b9604bbe2f8a37d20f13f, type: 3}
+      propertyPath: m_PropertySheet.m_NamedObject.m_Array.Array.data[0].m_Value
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8c72828ab00b9604bbe2f8a37d20f13f, type: 3}
