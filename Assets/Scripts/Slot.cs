@@ -35,7 +35,7 @@ public class Slot
         }
     }
 
-    public void ResetToNextTurn()
+    public void ResetToNextTurn(bool isStartRound)
     {
         if(state == SlotState.EMPTY && locked)
         {
@@ -44,7 +44,8 @@ public class Slot
         else if(state != SlotState.EMPTY && !locked)
         {
             state = SlotState.EMPTY;
-            locked = true;
+            if(!isStartRound)
+                locked = true;
         }
     }
 }

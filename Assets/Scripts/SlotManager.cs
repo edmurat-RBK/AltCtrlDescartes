@@ -295,6 +295,79 @@ public class SlotManager : MonoBehaviour
         }
     }
 
+    public void ReturnPollux(out int slotPollux, out CardSymbol symbolPollux)
+    {
+        slotPollux = -1;
+        symbolPollux = CardSymbol.PINK;
+
+        for (var i = 3; i < 6; i++)
+        {
+            if (slots[i].state != SlotState.EMPTY)
+            {
+                slotPollux = i;
+                Debug.Log(i);
+                switch (slots[i].state)
+                {
+                    case SlotState.PINK:
+                        symbolPollux = CardSymbol.PINK;
+                        break;
+
+                    case SlotState.BLUE:
+                        symbolPollux = CardSymbol.BLUE;
+                        break;
+
+                    case SlotState.ORANGE:
+                        symbolPollux = CardSymbol.ORANGE;
+                        break;
+
+                    default:
+                        throw new System.Exception();
+                }
+            }
+        }
+
+        if (slotPollux == -1)
+        {
+            throw new System.Exception();
+        }
+    }
+
+    public void ReturnCastor(out int slotCastor, out CardSymbol symbolCastor)
+    {
+        slotCastor = -1;
+        symbolCastor = CardSymbol.PINK;
+
+        for (var i = 0; i < 3; i++)
+        {
+            if (slots[i].state != SlotState.EMPTY)
+            {
+                slotCastor = i;
+                switch (slots[i].state)
+                {
+                    case SlotState.PINK:
+                        symbolCastor = CardSymbol.PINK;
+                        break;
+
+                    case SlotState.BLUE:
+                        symbolCastor = CardSymbol.BLUE;
+                        break;
+
+                    case SlotState.ORANGE:
+                        symbolCastor = CardSymbol.ORANGE;
+                        break;
+
+                    default:
+                        throw new System.Exception();
+                }
+            }
+        }
+
+        if (slotCastor == -1)
+        {
+            throw new System.Exception();
+        }
+    }
+
     public void SendFakeInput(SlotName slot, PlayerName player, CardSymbol symbol)
     {
         string send = "";

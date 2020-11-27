@@ -4,6 +4,7 @@ using Uduino;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.VFX;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -41,12 +42,18 @@ public class GameManager : MonoBehaviour
     }
     private static GameManager _instance = null;
     #endregion
-
     public GameState state;
     public SynchroScore score;
     public Text scoreDisplayCastor;
     public Text scoreDisplayPollux;
     private bool coroutineFeedback;
+
+
+    public bool isStartRound;
+    private bool guideFeedbackFlag;
+    public enum MenuButton {Start, Credits, Quit};
+    public MenuButton[] menuButtons = new MenuButton[3];
+    public float timeBeforeExecuteButton;
 
     #region Son
     public AudioManager audioManager;
@@ -129,6 +136,7 @@ public class GameManager : MonoBehaviour
         switch (state)
         {
             case GameState.WAIT_BOTH:
+                guideFeedbackFlag = true;
                 if (SlotManager.Instance.cardDown[(int)PlayerName.CASTOR])
                 {
                     state = GameState.WAIT_POLLUX;
@@ -140,16 +148,108 @@ public class GameManager : MonoBehaviour
                 break;
 
             case GameState.WAIT_CASTOR:
-                if (SlotManager.Instance.cardDown[(int)PlayerName.CASTOR] && !coroutineFeedback)
+                if(!coroutineFeedback)
                 {
-                    StartCoroutine(SwitchStateFeedback());
+                    if(SlotManager.Instance.cardDown[(int)PlayerName.CASTOR])
+                    {
+                        StartCoroutine(SwitchStateFeedback());
+                    }
+                    else if(isStartRound && guideFeedbackFlag)
+                    {
+                        guideFeedbackFlag = false;
+                        CardSymbol symbolPollux;
+                        int slotPollux;
+                        SlotManager.Instance.ReturnPollux(out slotPollux, out symbolPollux);
+                        if (slotPollux == 3)
+                        {
+                            Debug.Log(slotPollux);
+                            PositionInstanceP1 = Slot1Joueur1.transform.position;
+                        }
+                        if (slotPollux == 4)
+                        {
+                            PositionInstanceP1 = Slot2Joueur1.transform.position;
+                        }
+                        if (slotPollux == 5)
+                        {
+                            PositionInstanceP1 = Slot3Joueur1.transform.position;
+                        }
+                        FeedbackRang1ObjectPlayer1.transform.position = PositionInstanceP1;
+                        FeedbackRang1ObjectPlayer1.SetActive(true);
+                        switch (symbolPollux)
+                        {
+
+                            case CardSymbol.PINK:
+                                Debug.Log(symbolPollux);
+                                FeedbackRang1Player1.SetVector4("Couleur rectangles", jaune);
+                                Debug.Log("colorchange");
+                                break;
+
+                            case CardSymbol.BLUE:
+                                Debug.Log("blue");
+                                FeedbackRang1Player1.SetVector4("Couleur rectangles", bleu);
+                                Debug.Log("colorchangeblue");
+                                break;
+
+                            case CardSymbol.ORANGE:
+                                Debug.Log(symbolPollux);
+                                FeedbackRang1Player1.SetVector4("Couleur rectangles", orange);
+                                Debug.Log("colorchange");
+                                break;
+
+                            default:
+                                throw new System.Exception();
+                        }
+                        FeedbackRang1Player1.Play();
+                    }
                 }
                 break;
 
             case GameState.WAIT_POLLUX:
-                if (SlotManager.Instance.cardDown[(int)PlayerName.POLLUX] && !coroutineFeedback)
+                if (!coroutineFeedback)
                 {
-                    StartCoroutine(SwitchStateFeedback());
+                    if (SlotManager.Instance.cardDown[(int)PlayerName.POLLUX])
+                    {
+                        StartCoroutine(SwitchStateFeedback());
+                    }
+                    else if (isStartRound && guideFeedbackFlag)
+                    {
+                        guideFeedbackFlag = false;
+                        CardSymbol symbolCastor;
+                        int slotCastor;
+                        SlotManager.Instance.ReturnCastor(out slotCastor, out symbolCastor);
+                        if (slotCastor == 0)
+                        {
+                            PositionInstanceP2 = Slot1Joueur2.transform.position;
+                        }
+                        if (slotCastor == 1)
+                        {
+                            PositionInstanceP2 = Slot2Joueur2.transform.position;
+                        }
+                        if (slotCastor == 2)
+                        {
+                            PositionInstanceP2 = Slot3Joueur2.transform.position;
+                        }
+                        FeedbackRang1ObjectPlayer2.transform.position = PositionInstanceP2;
+                        FeedbackRang1ObjectPlayer2.SetActive(true);
+                        switch (symbolCastor)
+                        {
+                            case CardSymbol.PINK:
+                                FeedbackRang1Player2.SetVector4("Couleur rectangles", jaune);
+                                break;
+
+                            case CardSymbol.BLUE:
+                                FeedbackRang1Player2.SetVector4("Couleur rectangles", bleu);
+                                break;
+
+                            case CardSymbol.ORANGE:
+                                FeedbackRang1Player2.SetVector4("Couleur rectangles", orange);
+                                break;
+
+                            default:
+                                throw new System.Exception();
+                        }
+                        FeedbackRang1Player2.Play();
+                    }
                 }
                 break;
 
@@ -157,14 +257,17 @@ public class GameManager : MonoBehaviour
                 // Compare cards
                 CardSymbol successSymbol;
                 int slotIndex;
-                if (SlotManager.Instance.CheckFullSuccess(out successSymbol, out slotIndex))
+                if(!isStartRound)
                 {
-                    ObjectiveManager.Instance.Success(successSymbol);
-                    score.IncreaseScore();
-                }
-                else
-                {
-                    score.DecayScore();
+                    if (SlotManager.Instance.CheckFullSuccess(out successSymbol, out slotIndex))
+                    {
+                        ObjectiveManager.Instance.Success(successSymbol);
+                        score.IncreaseScore();
+                    }
+                    else
+                    {
+                        score.DecayScore();
+                    }
                 }
 
                 scoreDisplayCastor.text = score.score + "%";
@@ -172,10 +275,16 @@ public class GameManager : MonoBehaviour
 
                 // Send feedback
 
-
-                if (ObjectiveManager.Instance.BothFinish())
+                if(!isStartRound)
                 {
-                    state = GameState.END;
+                    if (ObjectiveManager.Instance.BothFinish())
+                    {
+                        state = GameState.END;
+                    }
+                    else
+                    {
+                        state = GameState.RESET;
+                    }
                 }
                 else
                 {
@@ -186,11 +295,11 @@ public class GameManager : MonoBehaviour
             case GameState.RESET:
                 foreach (Slot s in SlotManager.Instance.slots)
                 {
-                    s.ResetToNextTurn();
+                    s.ResetToNextTurn(isStartRound);
                 }
                 //eteindre les feedbacks
-                        //feedbacks rang 1
-                    FeedbackRang1Player1.Stop();
+                //feedbacks rang 1
+                FeedbackRang1Player1.Stop();
                     FeedbackRang1Player2.Stop();
                     FeedbackRang1ObjectPlayer1.SetActive(false);
                     FeedbackRang1ObjectPlayer2.SetActive(false);
@@ -236,6 +345,14 @@ public class GameManager : MonoBehaviour
     IEnumerator SwitchStateFeedback()
     {
         coroutineFeedback = true;
+
+        if(isStartRound)
+        {
+            FeedbackRang1Player1.Stop();
+            FeedbackRang1Player2.Stop();
+            FeedbackRang1ObjectPlayer1.SetActive(false);
+            FeedbackRang1ObjectPlayer2.SetActive(false);
+        }
 
         CardSymbol successSymbol;
         CardSymbol symbolCastor;
@@ -299,10 +416,11 @@ public class GameManager : MonoBehaviour
                     throw new System.Exception();
             }
 
-
-
+            if(isStartRound)
+            {
+                ClickButton(slotIndex);
+            }
         }
-
         else
         {
 
@@ -580,4 +698,40 @@ public class GameManager : MonoBehaviour
         coroutineFeedback = false;
     }
 
+    private void ClickButton(int slot)
+    {
+        switch(menuButtons[slot])
+        {
+            case MenuButton.Start:
+                Invoke("StartGame", timeBeforeExecuteButton);
+                break;
+
+
+            case MenuButton.Credits:
+                Invoke("GoCredits", timeBeforeExecuteButton);
+                break;
+
+
+            case MenuButton.Quit:
+                Invoke("Quit", timeBeforeExecuteButton);
+                break;
+        }
+    }
+
+    private void StartGame()
+    {
+        SceneManager.LoadScene(1);
+    }
+
+    private void GoCredits()
+    {
+        //lancer credits
+        Debug.Log("Credit");
+    }
+
+    private void Quit()
+    {
+        Application.Quit();
+        Debug.Log("Quit");
+    }
 }
