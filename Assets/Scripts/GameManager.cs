@@ -424,6 +424,8 @@ public class GameManager : MonoBehaviour
                 FeedbackRang2ObjectPlayer1Orange.transform.position = PositionInstanceP1;
                 FeedbackRang2ObjectPlayer2Orange.transform.position = PositionInstanceP2;
 
+
+                //affiche, change la couleur et joue le feedback pour le player 2 par rapport à la couleur du player 1
                 switch (symbolCastor)
                 {
                     case CardSymbol.PINK:
@@ -444,7 +446,7 @@ public class GameManager : MonoBehaviour
                         FeedbackRang2Player2Blue.Play();
                         break;
                 }
-
+                //affiche, change la couleur et joue le feedback pour le player 1 par rapport à la couleur du player 2
                 switch (symbolPollux)
                 {
                     case CardSymbol.PINK:
