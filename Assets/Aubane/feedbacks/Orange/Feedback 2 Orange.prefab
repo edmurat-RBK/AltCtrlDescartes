@@ -90,7 +90,7 @@ VisualEffect:
       m_Array: []
     m_NamedObject:
       m_Array:
-      - m_Value: {fileID: 2800000, guid: 767653ac42cf86d43ad57e3195af9b7b, type: 3}
+      - m_Value: {fileID: 0}
         m_Name: Symbole (avec contour)
         m_Overridden: 1
     m_Bool:

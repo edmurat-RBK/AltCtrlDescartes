@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
 
     public bool isStartRound;
     private bool guideFeedbackFlag;
-    public enum MenuButton {Start, Credits, Quit};
+    public enum MenuButton { Start, Credits, Quit };
     public MenuButton[] menuButtons = new MenuButton[3];
     public float timeBeforeExecuteButton;
 
@@ -91,14 +91,14 @@ public class GameManager : MonoBehaviour
     public GameObject FeedbackRang1ObjectPlayer2;
     public VisualEffect FeedbackRang1Player2;
     //effects rank2
-        //player 1
+    //player 1
     public GameObject FeedbackRang2ObjectPlayer1Blue;
     public VisualEffect FeedbackRang2Player1Blue;
     public GameObject FeedbackRang2ObjectPlayer1Yellow;
     public VisualEffect FeedbackRang2Player1Yellow;
     public GameObject FeedbackRang2ObjectPlayer1Orange;
     public VisualEffect FeedbackRang2Player1Orange;
-        //player 2
+    //player 2
     public GameObject FeedbackRang2ObjectPlayer2Blue;
     public VisualEffect FeedbackRang2Player2Blue;
     public GameObject FeedbackRang2ObjectPlayer2Yellow;
@@ -106,7 +106,7 @@ public class GameManager : MonoBehaviour
     public GameObject FeedbackRang2ObjectPlayer2Orange;
     public VisualEffect FeedbackRang2Player2Orange;
     //effects rank3
-        //Player1
+    //Player1
     public GameObject FeedbackRang3ObjectPlayer1Blue;
     public VisualEffect FeedbackRang3Player1Blue;
     public GameObject FeedbackRang3ObjectPlayer1Yellow;
@@ -127,7 +127,7 @@ public class GameManager : MonoBehaviour
     {
         audioManager = AudioManager.Instance;
         state = GameState.WAIT_BOTH;
-        score = new SynchroScore();
+        score = FindObjectOfType<SynchroScore>();//new SynchroScore();
         coroutineFeedback = false;
         DisableAllFeedbacks();
     }
@@ -149,13 +149,13 @@ public class GameManager : MonoBehaviour
                 break;
 
             case GameState.WAIT_CASTOR:
-                if(!coroutineFeedback)
+                if (!coroutineFeedback)
                 {
-                    if(SlotManager.Instance.cardDown[(int)PlayerName.CASTOR])
+                    if (SlotManager.Instance.cardDown[(int)PlayerName.CASTOR])
                     {
                         StartCoroutine(SwitchStateFeedback());
                     }
-                    else if(isStartRound && guideFeedbackFlag)
+                    else if (isStartRound && guideFeedbackFlag)
                     {
                         guideFeedbackFlag = false;
                         CardSymbol symbolPollux;
@@ -258,7 +258,7 @@ public class GameManager : MonoBehaviour
                 // Compare cards
                 CardSymbol successSymbol;
                 int slotIndex;
-                if(!isStartRound)
+                if (!isStartRound)
                 {
                     if (SlotManager.Instance.CheckFullSuccess(out successSymbol, out slotIndex))
                     {
@@ -276,7 +276,7 @@ public class GameManager : MonoBehaviour
 
                 // Send feedback
 
-                if(!isStartRound)
+                if (!isStartRound)
                 {
                     if (ObjectiveManager.Instance.BothFinish())
                     {
@@ -317,7 +317,7 @@ public class GameManager : MonoBehaviour
     {
         coroutineFeedback = true;
 
-        if(isStartRound)
+        if (isStartRound)
         {
             FeedbackRang1Player1.Stop();
             FeedbackRang1Player2.Stop();
@@ -352,12 +352,12 @@ public class GameManager : MonoBehaviour
                 PositionInstanceP2 = Slot3Joueur2.transform.position;
             }
             //on set la posiion des feedbacks
-                FeedbackRang3ObjectPlayer1Blue.transform.position = PositionInstanceP1;
-                FeedbackRang3ObjectPlayer2Blue.transform.position = PositionInstanceP2;
-                FeedbackRang3ObjectPlayer1Yellow.transform.position = PositionInstanceP1;
-                FeedbackRang3ObjectPlayer2Yellow.transform.position = PositionInstanceP2;
-                FeedbackRang3ObjectPlayer1Orange.transform.position = PositionInstanceP1;
-                FeedbackRang3ObjectPlayer2Orange.transform.position = PositionInstanceP2;
+            FeedbackRang3ObjectPlayer1Blue.transform.position = PositionInstanceP1;
+            FeedbackRang3ObjectPlayer2Blue.transform.position = PositionInstanceP2;
+            FeedbackRang3ObjectPlayer1Yellow.transform.position = PositionInstanceP1;
+            FeedbackRang3ObjectPlayer2Yellow.transform.position = PositionInstanceP2;
+            FeedbackRang3ObjectPlayer1Orange.transform.position = PositionInstanceP1;
+            FeedbackRang3ObjectPlayer2Orange.transform.position = PositionInstanceP2;
 
             //on joue les feedbacks selon la couleur
             switch (successSymbol)
@@ -387,7 +387,7 @@ public class GameManager : MonoBehaviour
                     throw new System.Exception();
             }
 
-            if(isStartRound)
+            if (isStartRound)
             {
                 ClickButton(slotIndex);
             }
@@ -456,9 +456,9 @@ public class GameManager : MonoBehaviour
                         break;
 
                     case CardSymbol.ORANGE:
-                        FeedbackRang2ObjectPlayer1Blue.SetActive(true);
-                        FeedbackRang2Player1Blue.SetVector4("Couleur rectangles", orange);
-                        FeedbackRang2Player1Blue.Play();
+                        FeedbackRang2ObjectPlayer1Orange.SetActive(true);
+                        FeedbackRang2Player1Orange.SetVector4("Couleur rectangles", orange);
+                        FeedbackRang2Player1Orange.Play();
                         break;
 
                     case CardSymbol.BLUE:
@@ -674,7 +674,7 @@ public class GameManager : MonoBehaviour
                 //couleur feedback player1
                 switch (symbolPollux)
                 {
-                    
+
                     case CardSymbol.PINK:
                         Debug.Log(symbolPollux);
                         FeedbackRang1Player1.SetVector4("Couleur rectangles", jaune);
@@ -711,7 +711,7 @@ public class GameManager : MonoBehaviour
 
     private void ClickButton(int slot)
     {
-        switch(menuButtons[slot])
+        switch (menuButtons[slot])
         {
             case MenuButton.Start:
                 Invoke("StartGame", timeBeforeExecuteButton);
