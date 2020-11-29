@@ -456,9 +456,9 @@ public class GameManager : MonoBehaviour
                         break;
 
                     case CardSymbol.ORANGE:
-                        FeedbackRang2ObjectPlayer1Orange.SetActive(true);
-                        FeedbackRang2Player1Orange.SetVector4("Couleur rectangles", orange);
-                        FeedbackRang2Player1Orange.Play();
+                        FeedbackRang2ObjectPlayer1Blue.SetActive(true);
+                        FeedbackRang2Player1Blue.SetVector4("Couleur rectangles", orange);
+                        FeedbackRang2Player1Blue.Play();
                         break;
 
                     case CardSymbol.BLUE:
