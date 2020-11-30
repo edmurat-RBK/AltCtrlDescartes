@@ -11,11 +11,13 @@ public class DisplayManager : MonoBehaviour
         // Display.displays[0] is the primary, default display and is always ON, so start at index 1.
         // Check if additional displays are available and activate each.
 
-        for (int i = 1; i < Display.displays.Length; i++)
+        for (int i = 0; i < Display.displays.Length; i++)
         {
-            Display.displays[2].Activate();
+            Display.displays[i].Activate();
         }
-        Debug.Log("displays connected: " + Display.displays.Length);
+    
+
+    Debug.Log("displays connected: " + Display.displays.Length);
     }
 
     // Update is called once per frame
