@@ -43,7 +43,11 @@ public class SynchroScore : MonoBehaviour
 
     public void DecayScore()
     {
-        score -= scoreDecay;
+        if( score > 0)
+        {
+            score -= scoreDecay;
+        }
+
         scoreUpdate = true;
         //score -= (int)Mathf.Round(scoreDecay + (scoreDecay * (decayScale * failStreak)));
         //if(score < 0)
