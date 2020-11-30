@@ -7,9 +7,9 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Interior
-  m_Shader: {fileID: -6465566751694194690, guid: b7ad7214481a4af4389524bf57563739, type: 3}
-  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
+  m_Name: test
+  m_Shader: {fileID: -6465566751694194690, guid: e9daf72fbf68a5f438e71ecd94f5322a, type: 3}
+  m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -43,17 +43,23 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_672590AA_Texture_1:
+        m_Texture: {fileID: 2800000, guid: 6fe002f4a331ab1419d49e3e4d7276a6, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_D81735DE_Texture_1:
+        m_Texture: {fileID: 2800000, guid: 6fe002f4a331ab1419d49e3e4d7276a6, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_FBF14367_Texture_1:
+        m_Texture: {fileID: 2800000, guid: 6fe002f4a331ab1419d49e3e4d7276a6, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_3F01904E: 0.5
-    - Vector1_526B383: 3
-    - Vector1_856E184C: 0.2
-    - Vector1_9ABD6B6B: 10
-    - Vector1_C8A3FE8F: 1
-    - Vector1_FE64B6DB: 15
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
@@ -76,13 +82,12 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - Color_41C277CC: {r: 4, g: 4, b: 4, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
   m_BuildTextureStacks: []
---- !u!114 &8617088777925703479
+--- !u!114 &7095309379446618156
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
