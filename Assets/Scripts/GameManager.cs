@@ -276,8 +276,7 @@ public class GameManager : MonoBehaviour
                     }
                 }
 
-                scoreDisplayCastor.text = score.score + "%";
-                scoreDisplayPollux.text = score.score + "%";
+
 
                 // Send feedback
 
