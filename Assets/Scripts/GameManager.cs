@@ -55,6 +55,11 @@ public class GameManager : MonoBehaviour
     public MenuButton[] menuButtons = new MenuButton[3];
     public float timeBeforeExecuteButton;
 
+    #region transitions 
+    public Animator transitionj1;
+    public Animator transitionj2;
+    #endregion
+
     #region Son
     public AudioManager audioManager;
     public AudioClip feedbackPositif;
@@ -468,151 +473,7 @@ public class GameManager : MonoBehaviour
                         break;
                 }
 
-                //on set active les objets dans lesquels les feedbacks sont et on change la couleur selon le cas et on déplace les game objects
-                /*switch (symbolCastor)
-                {
-                    case CardSymbol.PINK:
-                        FeedbackRang2ObjectPlayer2Yellow.SetActive(true);
-                            switch (symbolPollux)
-                            {
-                                case CardSymbol.BLUE:
-                                    Debug.Log("blue");
-                                    FeedbackRang2Player1Yellow.SetVector4("Couleur rectangles", bleu);
-                                    Debug.Log("colorchangeblue");
-                                    break;
 
-                                case CardSymbol.ORANGE:
-                                    Debug.Log(symbolPollux);
-                                    FeedbackRang2Player1Yellow.SetVector4("Couleur rectangles", orange);
-                                    Debug.Log("colorchangeorange");
-                                    break;
-
-                                default:
-                                    throw new System.Exception();
-                            }
-                        FeedbackRang2Player1Yellow.Play();
-                        break;
-
-                    case CardSymbol.BLUE:
-                        FeedbackRang2ObjectPlayer2Blue.SetActive(true);
-                            switch (symbolPollux)
-                            {
-                                case CardSymbol.PINK:
-                                    Debug.Log("yellow");
-                                    FeedbackRang2Player1Blue.SetVector4("Couleur rectangles", jaune);
-                                    Debug.Log("colorchangeyellow");
-                                    break;
-
-                                case CardSymbol.ORANGE:
-                                    Debug.Log(symbolPollux);
-                                    FeedbackRang2Player1Blue.SetVector4("Couleur rectangles", orange);
-                                    Debug.Log("colorchangeorange");
-                                    break;
-
-                                default:
-                                    throw new System.Exception();
-                            }
-                        FeedbackRang2Player1Blue.Play();
-                        break;
-
-                    case CardSymbol.ORANGE:
-                        FeedbackRang2ObjectPlayer2Orange.SetActive(true);
-                            switch (symbolPollux)
-                            {
-                                case CardSymbol.PINK:
-                                    Debug.Log("yellow");
-                                    FeedbackRang2Player1Orange.SetVector4("Couleur rectangles", jaune);
-                                    Debug.Log("colorchangeyellow");
-                                    break;
-
-                                case CardSymbol.BLUE:
-                                    Debug.Log(symbolPollux);
-                                    FeedbackRang2Player1Orange.SetVector4("Couleur rectangles", bleu);
-                                    Debug.Log("colorchangeblue");
-                                    break;
-
-                                default:
-                                    throw new System.Exception();
-                            }
-                        FeedbackRang2Player1Orange.Play();
-                        break;
-
-                    default:
-                        throw new System.Exception();
-                }
-                switch (symbolPollux)
-                {
-
-                    case CardSymbol.PINK:
-                        FeedbackRang2ObjectPlayer1Yellow.SetActive(true);
-                            switch (symbolCastor)
-                            {
-                                case CardSymbol.BLUE:
-                                    Debug.Log("blue");
-                                    FeedbackRang2Player1Yellow.SetVector4("Couleur rectangles", bleu);
-                                    Debug.Log("colorchangeblue");
-                                    break;
-
-                                case CardSymbol.ORANGE:
-                                    Debug.Log(symbolCastor);
-                                    FeedbackRang2Player1Yellow.SetVector4("Couleur rectangles", orange);
-                                    Debug.Log("colorchangeorange");
-                                    break;
-
-                                default:
-                                    throw new System.Exception();
-                            }
-                        FeedbackRang2Player2Yellow.Play();
-                        break;
-
-                    case CardSymbol.BLUE:
-                        FeedbackRang2ObjectPlayer1Blue.SetActive(true);
-                            switch (symbolCastor)
-                                {
-                                    case CardSymbol.PINK:
-                                        Debug.Log("jaune");
-                                        FeedbackRang2Player1Blue.SetVector4("Couleur rectangles", jaune);
-                                        Debug.Log("colorchangejaune");
-                                        break;
-
-                                    case CardSymbol.ORANGE:
-                                        Debug.Log(symbolCastor);
-                                        FeedbackRang2Player1Blue.SetVector4("Couleur rectangles", orange);
-                                        Debug.Log("colorchangeorange");
-                                        break;
-
-                                    default:
-                                        throw new System.Exception();
-                                }
-                        FeedbackRang2Player2Blue.Play();
-                        break;
-
-                    case CardSymbol.ORANGE:
-                        FeedbackRang2ObjectPlayer1Orange.SetActive(true);
-                            switch (symbolCastor)
-                                {
-                                    case CardSymbol.PINK:
-                                        Debug.Log("jaune");
-                                        FeedbackRang2Player1Orange.SetVector4("Couleur rectangles", jaune);
-                                        Debug.Log("colorchangej");
-                                        break;
-
-                                    case CardSymbol.BLUE:
-                                        Debug.Log(symbolCastor);
-                                        FeedbackRang2Player1Orange.SetVector4("Couleur rectangles", bleu);
-                                        Debug.Log("colorchangebleu");
-                                        break;
-
-                                    default:
-                                        throw new System.Exception();
-                                }
-                        FeedbackRang2Player2Orange.Play();
-                        break;
-
-                    default:
-                        throw new System.Exception();
-                }
-                */
             }
             else
             {
@@ -766,9 +627,17 @@ public class GameManager : MonoBehaviour
 
     private void StartGame()
     {
+        StartCoroutine(LoadLevel());
+        
+    }
+    IEnumerator LoadLevel()
+    {
+        //play animation
+        transitionj1.SetTrigger("Changescene");
+        transitionj2.SetTrigger("Changescene");
+        yield return new WaitForSeconds(1);
         SceneManager.LoadScene(1);
     }
-
     private void GoCredits()
     {
         //lancer credits
