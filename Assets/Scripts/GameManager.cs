@@ -639,7 +639,7 @@ public class GameManager : MonoBehaviour
     }
     private void GoCredits()
     {
-        //lancer credits
+        SceneManager.LoadScene(2);
         Debug.Log("Credit");
     }
 
