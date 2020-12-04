@@ -639,6 +639,8 @@ public class GameManager : MonoBehaviour
     }
     private void GoCredits()
     {
+        transitionj1.SetTrigger("Changescene");
+        transitionj2.SetTrigger("Changescene");
         SceneManager.LoadScene(2);
         Debug.Log("Credit");
     }
