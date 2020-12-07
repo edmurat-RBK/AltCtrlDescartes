@@ -6517,10 +6517,10 @@ MonoBehaviour:
   objectiveSets: []
   currentObjective: 
   finishObjective: 
-  pinkSprite: {fileID: 21300000, guid: 7008ea4a934f91546893819407cfdb04, type: 3}
+  pinkSprite: {fileID: 21300000, guid: 7442402c198174943af50bcb24d9d1d6, type: 3}
   blueSprite: {fileID: 21300000, guid: a6629f33dd57b7341a7d8e2c8d63e196, type: 3}
-  orangeSprite: {fileID: 21300000, guid: 8015863c618dec24285f2412574bfabf, type: 3}
-  pinkValidatedSprite: {fileID: 21300000, guid: 644b04fa587724e47b6c87aa66cddf62, type: 3}
+  orangeSprite: {fileID: 21300000, guid: e2b7ab69cae9e304e81298c101e3cf53, type: 3}
+  pinkValidatedSprite: {fileID: 21300000, guid: 93b147a2617c6f848a9f63df58cce9d3, type: 3}
   blueValidatedSprite: {fileID: 21300000, guid: b39e75d101ec9fb478ca7bda908deeb3, type: 3}
   orangeValidatedSprite: {fileID: 21300000, guid: 22659d23e66c11f4b8e014aab6cabde6, type: 3}
 --- !u!1 &1254540123
