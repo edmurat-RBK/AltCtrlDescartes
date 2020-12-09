@@ -2,5 +2,6 @@
 {
     PINK,
     BLUE,
-    ORANGE
+    ORANGE,
+    GREEN,
 }

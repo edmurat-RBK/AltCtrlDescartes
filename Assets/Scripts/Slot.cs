@@ -31,6 +31,10 @@ public class Slot
                 case CardSymbol.ORANGE:
                     state = SlotState.ORANGE;
                     break;
+
+                case CardSymbol.GREEN:
+                    state = SlotState.GREEN;
+                    break;
             }
         }
     }

@@ -17,10 +17,12 @@ public class SlotAgent : MonoBehaviour
     public VisualEffect yellowBasicFeedback;
     public VisualEffect blueBasicFeedback;
     public VisualEffect orangeBasicFeedback;
+    public VisualEffect greenBasicFeedback;
     public VisualEffect activableEffect;
     public GameObject YellowFeedback;
     public GameObject BlueFeedback;
     public GameObject OrangeFeedback;
+    public GameObject GreenFeedback;
     private bool visualeffectRun;
     private bool islocked = false;
 
@@ -43,9 +45,13 @@ public class SlotAgent : MonoBehaviour
             blueBasicFeedback.Reinit();
             orangeBasicFeedback.Reinit();
 
+            greenBasicFeedback.Reinit();
+
             yellowBasicFeedback.Stop();
             blueBasicFeedback.Stop();
             orangeBasicFeedback.Stop();
+
+            greenBasicFeedback.Stop();
             visualeffectRun = false;
             //YellowFeedback.SetActive(false);
             //BlueFeedback.SetActive(false);
@@ -74,10 +80,14 @@ public class SlotAgent : MonoBehaviour
                     yellowBasicFeedback.Reinit();
                     blueBasicFeedback.Reinit();
                     orangeBasicFeedback.Reinit();
-                    
+
+                    greenBasicFeedback.Reinit();
+
                     yellowBasicFeedback.Stop();
                     blueBasicFeedback.Stop();
                     orangeBasicFeedback.Stop();
+
+                    greenBasicFeedback.Stop();
                     visualeffectRun = false;
 
 
@@ -137,6 +147,21 @@ public class SlotAgent : MonoBehaviour
                     //    particleSystemRun = true;
                     //    orangeParticleSystem.Play();
                     //}
+
+                    break;
+
+
+
+                case SlotState.GREEN:
+
+                    if (!visualeffectRun)
+                    {
+                        GreenFeedback.SetActive(true);
+                        greenBasicFeedback.Play();
+                        Debug.Log("play");
+                        visualeffectRun = true;
+                    }
+
                     break;
             }
         }

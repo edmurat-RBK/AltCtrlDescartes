@@ -51,10 +51,13 @@ public class ObjectiveManager : MonoBehaviour
     public Sprite pinkSprite;
     public Sprite blueSprite;
     public Sprite orangeSprite;
+
+    public Sprite greenSprite;
     public Sprite pinkValidatedSprite;
     public Sprite blueValidatedSprite;
     public Sprite orangeValidatedSprite;
 
+    public Sprite greenValidatedSprite;
     private void Awake()
     {
         objectiveSets = new ObjectiveSet[2];

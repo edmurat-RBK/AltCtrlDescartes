@@ -131,6 +131,9 @@ public class SlotManager : MonoBehaviour
                     case SlotState.ORANGE:
                         symbol = CardSymbol.ORANGE;
                         break;
+                    case SlotState.GREEN:
+                        symbol = CardSymbol.GREEN;
+                        break;
 
                     default:
                         throw new System.Exception();
@@ -167,6 +170,9 @@ public class SlotManager : MonoBehaviour
                             case SlotState.ORANGE:
                                 symbol = CardSymbol.ORANGE;
                                 break;
+                            case SlotState.GREEN:
+                                symbol = CardSymbol.GREEN;
+                                break;
 
                             default:
                                 throw new System.Exception();
@@ -199,6 +205,9 @@ public class SlotManager : MonoBehaviour
                     case SlotState.ORANGE:
                         symbolCastor = CardSymbol.ORANGE;
                         break;
+                    case SlotState.GREEN:
+                        symbolCastor = CardSymbol.GREEN;
+                        break;
 
                     default:
                         throw new System.Exception();
@@ -215,6 +224,10 @@ public class SlotManager : MonoBehaviour
 
                     case SlotState.ORANGE:
                         symbolPollux = CardSymbol.ORANGE;
+                        break;
+
+                    case SlotState.GREEN:
+                        symbolPollux = CardSymbol.GREEN;
                         break;
 
                     default:
@@ -257,6 +270,10 @@ public class SlotManager : MonoBehaviour
                         symbolCastor = CardSymbol.ORANGE;
                         break;
 
+                    case SlotState.GREEN:
+                        symbolCastor = CardSymbol.GREEN;
+                        break;
+
                     default:
                         throw new System.Exception();
                 }
@@ -281,6 +298,10 @@ public class SlotManager : MonoBehaviour
 
                     case SlotState.ORANGE:
                         symbolPollux = CardSymbol.ORANGE;
+                        break;
+
+                    case SlotState.GREEN:
+                        symbolPollux = CardSymbol.GREEN;
                         break;
 
                     default:
@@ -319,6 +340,9 @@ public class SlotManager : MonoBehaviour
                     case SlotState.ORANGE:
                         symbolPollux = CardSymbol.ORANGE;
                         break;
+                    case SlotState.GREEN:
+                        symbolPollux = CardSymbol.GREEN;
+                        break;
 
                     default:
                         throw new System.Exception();
@@ -354,6 +378,10 @@ public class SlotManager : MonoBehaviour
 
                     case SlotState.ORANGE:
                         symbolCastor = CardSymbol.ORANGE;
+                        break;
+
+                    case SlotState.GREEN:
+                        symbolCastor = CardSymbol.GREEN;
                         break;
 
                     default:

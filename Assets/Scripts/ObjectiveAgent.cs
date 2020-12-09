@@ -39,9 +39,11 @@ public class ObjectiveAgent : MonoBehaviour
                 case CardSymbol.BLUE:
                     spriteRenderer.sprite = ObjectiveManager.Instance.blueSprite;
                     break;
-
                 case CardSymbol.ORANGE:
                     spriteRenderer.sprite = ObjectiveManager.Instance.orangeSprite;
+                    break;
+                case CardSymbol.GREEN:
+                    spriteRenderer.sprite = ObjectiveManager.Instance.greenValidatedSprite;
                     break;
             }
 
@@ -67,6 +69,10 @@ public class ObjectiveAgent : MonoBehaviour
 
                 case CardSymbol.ORANGE:
                     spriteRenderer.sprite = ObjectiveManager.Instance.orangeValidatedSprite;
+                    break;
+
+                case CardSymbol.GREEN:
+                    spriteRenderer.sprite = ObjectiveManager.Instance.greenValidatedSprite;
                     break;
             }
 

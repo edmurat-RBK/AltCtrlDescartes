@@ -89,6 +89,8 @@ public class GameManager : MonoBehaviour
     private Vector4 jaune = new Vector4(253, 214, 1, 255);
     [SerializeField]
     private Vector4 orange = new Vector4(191, 27, 4, 255);
+    [SerializeField]
+    private Vector4 green = new Vector4(6, 191, 0, 255);
 
     //effects rank1
     public GameObject FeedbackRang1ObjectPlayer1;
@@ -103,6 +105,8 @@ public class GameManager : MonoBehaviour
     public VisualEffect FeedbackRang2Player1Yellow;
     public GameObject FeedbackRang2ObjectPlayer1Orange;
     public VisualEffect FeedbackRang2Player1Orange;
+    public GameObject FeedbackRang2ObjectPlayer1Green;
+    public VisualEffect FeedbackRang2Player1Green;
     //player 2
     public GameObject FeedbackRang2ObjectPlayer2Blue;
     public VisualEffect FeedbackRang2Player2Blue;
@@ -110,6 +114,8 @@ public class GameManager : MonoBehaviour
     public VisualEffect FeedbackRang2Player2Yellow;
     public GameObject FeedbackRang2ObjectPlayer2Orange;
     public VisualEffect FeedbackRang2Player2Orange;
+    public GameObject FeedbackRang2ObjectPlayer2Green;
+    public VisualEffect FeedbackRang2Player2Green;
     //effects rank3
     //Player1
     public GameObject FeedbackRang3ObjectPlayer1Blue;
@@ -118,6 +124,8 @@ public class GameManager : MonoBehaviour
     public VisualEffect FeedbackRang3Player1Yellow;
     public GameObject FeedbackRang3ObjectPlayer1Orange;
     public VisualEffect FeedbackRang3Player1Orange;
+    public GameObject FeedbackRang3ObjectPlayer1Green;
+    public VisualEffect FeedbackRang3Player1Green;
     //Player2
     public GameObject FeedbackRang3ObjectPlayer2Blue;
     public VisualEffect FeedbackRang3Player2Blue;
@@ -125,6 +133,8 @@ public class GameManager : MonoBehaviour
     public VisualEffect FeedbackRang3Player2Yellow;
     public GameObject FeedbackRang3ObjectPlayer2Orange;
     public VisualEffect FeedbackRang3Player2Orange;
+    public GameObject FeedbackRang3ObjectPlayer2Green;
+    public VisualEffect FeedbackRang3Player2Green;
 
     #endregion
 
@@ -362,6 +372,8 @@ public class GameManager : MonoBehaviour
             FeedbackRang3ObjectPlayer2Yellow.transform.position = PositionInstanceP2;
             FeedbackRang3ObjectPlayer1Orange.transform.position = PositionInstanceP1;
             FeedbackRang3ObjectPlayer2Orange.transform.position = PositionInstanceP2;
+            FeedbackRang3ObjectPlayer1Green.transform.position = PositionInstanceP1;
+            FeedbackRang3ObjectPlayer2Green.transform.position = PositionInstanceP2;
 
             //on joue les feedbacks selon la couleur
             switch (successSymbol)
@@ -385,6 +397,12 @@ public class GameManager : MonoBehaviour
                     FeedbackRang3ObjectPlayer2Orange.SetActive(true);
                     FeedbackRang3Player1Orange.Play();
                     FeedbackRang3Player2Orange.Play();
+                    break;
+                case CardSymbol.GREEN:
+                    FeedbackRang3ObjectPlayer1Green.SetActive(true);
+                    FeedbackRang3ObjectPlayer2Green.SetActive(true);
+                    FeedbackRang3Player1Green.Play();
+                    FeedbackRang3Player2Green.Play();
                     break;
 
                 default:
@@ -427,6 +445,8 @@ public class GameManager : MonoBehaviour
                 FeedbackRang2ObjectPlayer2Yellow.transform.position = PositionInstanceP2;
                 FeedbackRang2ObjectPlayer1Orange.transform.position = PositionInstanceP1;
                 FeedbackRang2ObjectPlayer2Orange.transform.position = PositionInstanceP2;
+                FeedbackRang2ObjectPlayer1Green.transform.position = PositionInstanceP1;
+                FeedbackRang2ObjectPlayer2Green.transform.position = PositionInstanceP2;
 
 
                 //affiche, change la couleur et joue le feedback pour le player 2 par rapport à la couleur du player 1
@@ -449,6 +469,11 @@ public class GameManager : MonoBehaviour
                         FeedbackRang2Player2Blue.SetVector4("Couleur rectangles", bleu);
                         FeedbackRang2Player2Blue.Play();
                         break;
+                    case CardSymbol.GREEN:
+                        FeedbackRang2ObjectPlayer2Green.SetActive(true);
+                        FeedbackRang2Player2Green.SetVector4("Couleur rectangles", bleu);
+                        FeedbackRang2Player2Green.Play();
+                        break;
                 }
                 //affiche, change la couleur et joue le feedback pour le player 1 par rapport à la couleur du player 2
                 switch (symbolPollux)
@@ -469,6 +494,11 @@ public class GameManager : MonoBehaviour
                         FeedbackRang2ObjectPlayer1Blue.SetActive(true);
                         FeedbackRang2Player1Blue.SetVector4("Couleur rectangles", bleu);
                         FeedbackRang2Player1Blue.Play();
+                        break;
+                    case CardSymbol.GREEN:
+                        FeedbackRang2ObjectPlayer1Green.SetActive(true);
+                        FeedbackRang2Player1Green.SetVector4("Couleur rectangles", bleu);
+                        FeedbackRang2Player1Green.Play();
                         break;
                 }
 
@@ -603,12 +633,16 @@ public class GameManager : MonoBehaviour
         FeedbackRang2Player2Yellow.Stop();
         FeedbackRang2Player1Orange.Stop();
         FeedbackRang2Player2Orange.Stop();
+        FeedbackRang2Player1Green.Stop();
+        FeedbackRang2Player2Green.Stop();
         FeedbackRang2ObjectPlayer1Blue.SetActive(false);
         FeedbackRang2ObjectPlayer2Blue.SetActive(false);
         FeedbackRang2ObjectPlayer1Yellow.SetActive(false);
         FeedbackRang2ObjectPlayer2Yellow.SetActive(false);
         FeedbackRang2ObjectPlayer1Orange.SetActive(false);
         FeedbackRang2ObjectPlayer2Orange.SetActive(false);
+        FeedbackRang2ObjectPlayer1Green.SetActive(false);
+        FeedbackRang2ObjectPlayer2Green.SetActive(false);
         //feedbacks rang 3
         FeedbackRang3Player1Blue.Stop();
         FeedbackRang3Player2Blue.Stop();
@@ -616,12 +650,16 @@ public class GameManager : MonoBehaviour
         FeedbackRang3Player2Yellow.Stop();
         FeedbackRang3Player1Orange.Stop();
         FeedbackRang3Player2Orange.Stop();
+        FeedbackRang3Player1Green.Stop();
+        FeedbackRang3Player2Green.Stop();
         FeedbackRang3ObjectPlayer1Blue.SetActive(false);
         FeedbackRang3ObjectPlayer2Blue.SetActive(false);
         FeedbackRang3ObjectPlayer1Yellow.SetActive(false);
         FeedbackRang3ObjectPlayer2Yellow.SetActive(false);
         FeedbackRang3ObjectPlayer1Orange.SetActive(false);
         FeedbackRang3ObjectPlayer2Orange.SetActive(false);
+        FeedbackRang3ObjectPlayer1Green.SetActive(false);
+        FeedbackRang3ObjectPlayer2Green.SetActive(false);
     }
 
     private void StartGame()

@@ -3,5 +3,6 @@
     EMPTY,
     PINK,
     BLUE,
-    ORANGE
+    ORANGE,
+    GREEN,
 }
