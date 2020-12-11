@@ -7032,7 +7032,7 @@ MonoBehaviour:
   blueSprite: {fileID: 21300000, guid: a6629f33dd57b7341a7d8e2c8d63e196, type: 3}
   orangeSprite: {fileID: 21300000, guid: f92bd450017827a40a7d8058723bc616, type: 3}
   pinkValidatedSprite: {fileID: 21300000, guid: 93b147a2617c6f848a9f63df58cce9d3, type: 3}
-  blueValidatedSprite: {fileID: 21300000, guid: b39e75d101ec9fb478ca7bda908deeb3, type: 3}
+  blueValidatedSprite: {fileID: 21300000, guid: 5e9d4faf22361da42827506f98c2b242, type: 3}
   orangeValidatedSprite: {fileID: 21300000, guid: a96cdedd278bca347a874f698aebac6e, type: 3}
 --- !u!1 &1254540123
 GameObject:

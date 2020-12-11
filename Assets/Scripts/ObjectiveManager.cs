@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ObjectiveManager : MonoBehaviour
 {
@@ -65,6 +66,14 @@ public class ObjectiveManager : MonoBehaviour
             objectiveSets[i] = pickRandom();
             currentObjective[i] = 0;
             finishObjective[i] = false;
+        }
+    }
+
+    private void Update()
+    {
+        if (BothFinish())
+        {
+            SceneManager.LoadScene(0);
         }
     }
 
