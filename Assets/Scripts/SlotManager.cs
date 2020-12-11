@@ -62,6 +62,96 @@ public class SlotManager : MonoBehaviour
         cardDown = new bool[2] { false, false };
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            SendFakeInput(SlotName.ALPHA, PlayerName.CASTOR, CardSymbol.BLUE);
+        }
+        else if (Input.GetKeyDown(KeyCode.Q))
+        {
+            SendFakeInput(SlotName.ALPHA, PlayerName.CASTOR, CardSymbol.ORANGE);
+        }
+        else if (Input.GetKeyDown(KeyCode.W))
+        {
+            SendFakeInput(SlotName.ALPHA, PlayerName.CASTOR, CardSymbol.PINK);
+        }
+        else if (Input.GetKeyDown(KeyCode.Z))
+        {
+            SendFakeInput(SlotName.BETA, PlayerName.CASTOR, CardSymbol.BLUE);
+        }
+        else if (Input.GetKeyDown(KeyCode.S))
+        {
+            SendFakeInput(SlotName.BETA, PlayerName.CASTOR, CardSymbol.ORANGE);
+        }
+        else if (Input.GetKeyDown(KeyCode.X))
+        {
+            SendFakeInput(SlotName.BETA, PlayerName.CASTOR, CardSymbol.PINK);
+        }
+        else if (Input.GetKeyDown(KeyCode.E))
+        {
+            SendFakeInput(SlotName.GAMMA, PlayerName.CASTOR, CardSymbol.BLUE);
+        }
+        else if (Input.GetKeyDown(KeyCode.D))
+        {
+            SendFakeInput(SlotName.GAMMA, PlayerName.CASTOR, CardSymbol.ORANGE);
+        }
+        else if (Input.GetKeyDown(KeyCode.C))
+        {
+            SendFakeInput(SlotName.GAMMA, PlayerName.CASTOR, CardSymbol.PINK);
+        }
+        else if (Input.GetKeyDown(KeyCode.Keypad7))
+        {
+            SendFakeInput(SlotName.DELTA, PlayerName.POLLUX, CardSymbol.BLUE);
+        }
+        else if (Input.GetKeyDown(KeyCode.Keypad4))
+        {
+            SendFakeInput(SlotName.DELTA, PlayerName.POLLUX, CardSymbol.ORANGE);
+        }
+        else if (Input.GetKeyDown(KeyCode.Keypad1))
+        {
+            SendFakeInput(SlotName.DELTA, PlayerName.POLLUX, CardSymbol.PINK);
+        }
+        else if (Input.GetKeyDown(KeyCode.Keypad8))
+        {
+            SendFakeInput(SlotName.EPSILON, PlayerName.POLLUX, CardSymbol.BLUE);
+        }
+        else if (Input.GetKeyDown(KeyCode.Keypad5))
+        {
+            SendFakeInput(SlotName.EPSILON, PlayerName.POLLUX, CardSymbol.ORANGE);
+        }
+        else if (Input.GetKeyDown(KeyCode.Keypad2))
+        {
+            SendFakeInput(SlotName.EPSILON, PlayerName.POLLUX, CardSymbol.PINK);
+        }
+        else if (Input.GetKeyDown(KeyCode.Keypad9))
+        {
+            SendFakeInput(SlotName.DZETA, PlayerName.POLLUX, CardSymbol.BLUE);
+        }
+        else if (Input.GetKeyDown(KeyCode.Keypad6))
+        {
+            SendFakeInput(SlotName.DZETA, PlayerName.POLLUX, CardSymbol.ORANGE);
+        }
+        else if (Input.GetKeyDown(KeyCode.Keypad3))
+        {
+            SendFakeInput(SlotName.DZETA, PlayerName.POLLUX, CardSymbol.PINK);
+        }
+        else if (Input.GetKeyDown(KeyCode.Space))
+        {
+            slots[(int)SlotName.ALPHA].state = SlotState.EMPTY;
+            slots[(int)SlotName.BETA].state = SlotState.EMPTY;
+            slots[(int)SlotName.GAMMA].state = SlotState.EMPTY;
+            cardDown[(int)PlayerName.CASTOR] = false;
+        }
+        else if (Input.GetKeyDown(KeyCode.Keypad0))
+        {
+            slots[(int)SlotName.DELTA].state = SlotState.EMPTY;
+            slots[(int)SlotName.EPSILON].state = SlotState.EMPTY;
+            slots[(int)SlotName.DZETA].state = SlotState.EMPTY;
+            cardDown[(int)PlayerName.POLLUX] = false;
+        }
+    }
+
     public void GetData(string data, UduinoDevice board)
     {
         string[] dataSplit = data.Split(':');
