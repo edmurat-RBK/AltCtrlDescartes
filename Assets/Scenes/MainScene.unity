@@ -7019,6 +7019,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectiveSetList:
+  - {fileID: 11400000, guid: 5894745992f7a8a4099cc725edf4b140, type: 2}
+  - {fileID: 11400000, guid: 0fba1d8b843bcb84380ffd0bcfbc763a, type: 2}
+  - {fileID: 11400000, guid: 4e2313b5f32c1a44cae1025b47cab585, type: 2}
   - {fileID: 11400000, guid: da91d60df70e39e4484b7d944eebc040, type: 2}
   - {fileID: 11400000, guid: 924ce37530eb8f845aaee1b2446e3139, type: 2}
   - {fileID: 11400000, guid: a94ccce428900ba40b668320f802978d, type: 2}
