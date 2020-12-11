@@ -45,4 +45,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Music1: {fileID: 8300000, guid: 7ea0d0e4f6742cf48931b96c88566a9b, type: 3}
   Music2: {fileID: 8300000, guid: e8b2ec9b0d7c23e4abd7024cb2f699b8, type: 3}
-  audioManager: {fileID: 0}
+  audioManager: {fileID: 1961108893364859321, guid: b8ea6af65da1d0d4387c005bd22e7569, type: 3}
